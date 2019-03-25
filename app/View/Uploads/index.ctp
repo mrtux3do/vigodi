@@ -1,4 +1,4 @@
-<form action="/website/Uploads" id="formupload" enctype="multipart/form-data" method="post" accept-charset="utf-8" class="dropzone">
+<form action="/Uploads" id="formupload" enctype="multipart/form-data" method="post" accept-charset="utf-8" class="dropzone">
 	<div class="input file" >
 		<label for="btn-upload">Drag File Here To Upload</label>
 		<input type="file" name="data[Upload][Click here to Upload or Drag file here]"  id="btn-upload"/>
