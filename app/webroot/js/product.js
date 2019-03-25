@@ -7,7 +7,7 @@ $(document).ready(function(){
 
         $.ajax({
             method: 'POST',
-            url: pathname + '/website/Ajax/postComment/',
+            url: pathname + '/Ajax/postComment/',
             dataType: 'json',
             data: {
                 comment: comment,
