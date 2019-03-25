@@ -321,7 +321,7 @@
 													</div>
 													<div class="desc-item-product">
 														<h1>
-															<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail',$val['Product']['id']))?>"><?php echo $val['Product']['name'] ?></a>
+															<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>"><?php echo $val['Product']['name'] ?></a>
 														</h1>
 														<div class="rate-product">
 															<div class="star star-on"></div>
