@@ -49,7 +49,7 @@
 	<div class="login-popup">
 		<div class="pop-up-content">
 			<label id="btn-close"></label>
-			<form method="POST" action="/website/Auth/login">
+			<form method="POST" action="/Auth/login">
 				<div class="form-group" style="margin-bottom: 50px">
 					<label>Email</label>
 					<input type="email" name="data[User][email]" id="email" required placeholder="email">
