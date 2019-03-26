@@ -87,46 +87,50 @@
 		<div class="row">
 		<div id="main-menu">
 			<div class="col-lg-3 col-md-3" style="position: unset;">
-				<div id="sort-category">
-				<button>Danh mục sản phẩm</button>
-				<div class="item-categories">
-					<ul>
-						<?php if(isset($category)): ?>
-							<?php foreach($category as $data): ?>
-								<li> <?php echo $data['Category']['category_name'] ?> </li>
-							<?php endforeach; ?>
-						<?php endif; ?>
-					</ul>
-				</div>
+				<div class="row">
+					<div id="sort-category">
+					<button>Danh mục sản phẩm</button>
+					<div class="item-categories">
+						<ul>
+							<?php if(isset($category)): ?>
+								<?php foreach($category as $data): ?>
+									<li> <?php echo $data['Category']['category_name'] ?> </li>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</ul>
+					</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-lg-9 col-md-9" style="position: unset;">
-				<ul class="drop-down">
-				<li>Trang Chủ</li>
-				<li id="menu-active" class="hbh">
-					Hàng Bách hóa
-					<div class="sub-menu-hbh">
-						<div id="menu-hbh">
-							<div>Cà phê</div>
-							<div>Nhàu Noni</div>
-							<div>Cao Atiso</div>
-							<div>Socola Marou</div>
+				<div class="row">
+					<ul class="drop-down">
+					<li>Trang Chủ</li>
+					<li id="menu-active" class="hbh">
+						Hàng Bách hóa
+						<div class="sub-menu-hbh">
+							<div id="menu-hbh">
+								<div>Cà phê</div>
+								<div>Nhàu Noni</div>
+								<div>Cao Atiso</div>
+								<div>Socola Marou</div>
+							</div>
 						</div>
-					</div>
-				</li>
-				<li id="menu-active" class="hln">
-					hàng lưu niệm
-					<div class="sub-menu-hln">
-						<div id="menu-hln">
-							<div>Mây tre đan, Cói</div>
-							<div>Lụa tơ tằm</div>
-							<div>Túi, ví vải Handmade</div>
-							<div>Thú len đan móc bằng tay</div>
-							<div>Túi, ba lô, ví thổ cẩm</div>
-						</div>
-					</div>					
-				</li>
-				</ul>
+					</li>
+					<li id="menu-active" class="hln">
+						hàng lưu niệm
+						<div class="sub-menu-hln">
+							<div id="menu-hln">
+								<div>Mây tre đan, Cói</div>
+								<div>Lụa tơ tằm</div>
+								<div>Túi, ví vải Handmade</div>
+								<div>Thú len đan móc bằng tay</div>
+								<div>Túi, ba lô, ví thổ cẩm</div>
+							</div>
+						</div>					
+					</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		</div>

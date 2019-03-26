@@ -311,6 +311,7 @@ li#compare:after{
 	background: #f3f3f3;
 	padding: 35px;
 	left: 0px;
+	z-index: 1
 }
 
 #cart-wish .cart-noti:before{
@@ -353,8 +354,9 @@ li#compare:after{
 }
 
 #sort-category{
-	width: 270px;
+	width: 100%;
 	display: inline-block;
+	position: relative;
 }
 
 #sort-category > button{
@@ -381,7 +383,7 @@ li#compare:after{
 }
 
 .item-categories{
-	width: 270px;
+	width: 100%;
 	background: #fff;
 	border: 2px solid #eab90a;
 	padding: 0 32px;
@@ -468,13 +470,11 @@ li#compare:after{
 	-o-transition: all 0.6s ease; 
 }
 
-#main-menu{
-	overflow: hidden;
-}
-
 #main-menu ul.drop-down{
 	overflow:  hidden;
 	display: inline-block;
+	width: 100%;
+	margin-left: 20%;
 }
 
 #main-menu ul.drop-down > li{
@@ -489,6 +489,14 @@ li#compare:after{
 #main-menu ul.drop-down #menu-active:hover{
 	color: #eab90a;
 	cursor: pointer;
+}
+
+#main-menu ul.drop-down #menu-active.hbh:hover .sub-menu-hbh{
+	display: block;
+}
+
+#main-menu ul.drop-down #menu-active.hln:hover .sub-menu-hln{
+	display: block;
 }
 
 #menu-icon{
@@ -2094,10 +2102,60 @@ li#compare:after{
 	border-bottom: 1px solid #ebebeb;
 }
 
-.filter-group .add-filter:before{
-	
+.filter-group .add-filter a:before{
+	content: "\f107";
+	font-family: "FontAwesome" !important;
+	position: absolute;
+	right: 40%;
 }
 
 .filter-group .add-filter:last-child{
 	border-bottom: none;
+}
+
+.filter-group .add-filter ul{
+	display: none;
+	padding: 0 30px;
+}
+
+.filter-group .add-filter ul li{
+	text-transform: capitalize;
+	line-height: 25px;
+}
+
+.filter-group .add-filter ul li:hover{
+	color: #eab90a;
+	cursor: pointer;
+}
+
+.filter-price{
+	margin-top: 50px;
+	margin: 50px -20px;
+	background: #f1f2f4;
+}
+.filter-price h2{
+	margin-bottom: 30px;
+}
+.filter-price .box-price{
+	padding: 40px 20px;
+}
+
+.form-group .custom-range {
+	-webkit-appearance: none;
+	background: #d3d3d3;
+	outline: none;
+	background: #eab90a;
+	height: 5px;
+}
+
+.form-group .custom-range::-webkit-slider-thumb{
+	-webkit-appearance: none;
+	appearance: none;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+	border: 1px solid #eab90a;
+	background: #fff;
+	cursor: pointer;
+	border-radius: 50%;
 }
