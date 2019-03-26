@@ -1972,6 +1972,15 @@ li#compare:after{
 	border-right: 1px solid #ebebeb;
 }
 
+.tab-content .box-review{
+	width: 100%;
+}
+
+.box-review tr.spacer{
+	height: 30px;
+}
+
+
 .box-review tr td:last-child{
 	border-right: none;
 }

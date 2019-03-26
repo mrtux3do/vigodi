@@ -78,6 +78,7 @@
 									<p><?php echo $comment['Comment']['message']; ?></p>
 								</td>
 							</tr>
+							<tr class="spacer"></tr>
 						<?php endforeach; ?>
 					</table>
 					<div class="comment">
@@ -106,7 +107,7 @@
 					<?php foreach($relate as $val): ?>
 						<div class="item-common-product">
 							<div class="img-common-product">
-								<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail',$val['Product']['id']))?>">
+								<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>">
 									<img src="<?php echo $this->webroot.$val['Product']['image'] ?>">
 								</a>
 								<div class="product-flag">
@@ -116,7 +117,7 @@
 							</div>
 							<div class="desc-item-product">
 								<h1>
-									<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail',$val['Product']['id']))?>"><?php echo $val['Product']['name'] ?></a>
+									<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>"><?php echo $val['Product']['name'] ?></a>
 								</h1>
 								<div class="rate-product">
 									<div class="star star-on"></div>

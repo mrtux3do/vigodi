@@ -12,6 +12,10 @@ class UsersController extends CommonController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('register');
+        $this->Auth->allow('index');
+        $this->Auth->allow('add');
+        $this->Auth->allow('profile');
+        $this->Auth->allow('edit');
 
 		$this->__role = $this->Role->find('all');
 	}
@@ -147,5 +151,125 @@ class UsersController extends CommonController {
             }
         }
 	}
+
+	public function index(){
+	    $this->layout = 'admin';
+
+        $this->set('commons', [
+            'breadcrumbs' => [
+                ['User', ['controller' => 'users', 'action' => 'index']],
+                ['List']
+            ],
+            'header' => ['User', 'member list']
+        ]);
+    }
+
+    public function add() {
+        $this->layout = 'admin';
+
+        $this->set('commons', [
+            'breadcrumbs' => [
+                ['User', ['controller' => 'users', 'action' => 'add']],
+                ['List']
+            ],
+            'header' => ['User', 'Add new user']
+        ]);
+    }
+
+    public function profile() {
+        $this->layout = 'admin';
+
+//        $uid = $this->request->params['uid'];
+//        $user = $this->User->getUserInfo($uid);
+//        $this->set("user", $user);
+        $this->set('commons', [
+            'breadcrumbs' => [
+                ['User', ['controller' => 'users', 'action' => 'profile']],
+                ['Profile']
+            ],
+            'header' => ['User', 'profile']
+        ]);
+    }
+
+    public function edit() {
+        $this->layout = 'admin';
+
+        //get user id
+//        $id = $this->request->params['id'];
+//        if (!$id) {
+//            throw new NotFoundException(__('Invalid user'));
+//        }
+//        $user = $this->User->findById($id);
+//
+//        if (!$user) {
+//            throw new NotFoundException(__('Invalid user'));
+//        }
+//        if ($this->request->is(array('post', 'put'))) {
+//            $this->User->id = $id;
+//            $data = $this->request->data;
+//            $data['contract_id'] = $user['User']['contract_id'];
+//            $data['created_at'] = $user['User']['created_at'];
+//            $data['created_uid'] = $user['User']['created_uid'];
+//            $data['updated_at'] = date('Y-m-d H:i:s', time());
+//            $data['updated_uid'] = $this->Auth->user('id');
+//            $data['email'] = $user['User']['email'];
+//            //Uplodate user's image
+//            $fileInfo = $_FILES['img-profile'];
+//            if (!empty($fileInfo['name'])) {
+//                $absolutePath = 'img/avatars' . DS . time() . "_" . $fileInfo['name'];
+//                $path = WWW_ROOT . $absolutePath;
+//                move_uploaded_file($fileInfo['tmp_name'], $path);
+//                $fileName = "/" . $absolutePath;
+//            } else {
+//                $fileName = $user['User']['img-profile'];
+//            }
+//
+//            $data['img-profile'] = $fileName;
+//
+//            //Check whether password is change or not
+//            if ($this->request->data('old_pass') != '') {
+//                $passwordHasher = new BlowfishPasswordHasher();
+//                $old_pass = $this->request->data('old_pass');
+//                $new_pass = $passwordHasher->hash($this->request->data('new_pass'));
+//                $chk_pass = $passwordHasher->check($old_pass, $user['User']['password']);
+//                // var_dump($chk_pass);
+//                if ($chk_pass == true) {
+//                    $data['password'] = $new_pass;
+//                    // pr($data['password']);exit();
+//                } else {
+//                    $this->Flash->error('Wrong password!', array(
+//                        'key' => 'error_msg'
+//                    ));
+//                    return $this->redirect($this->referer());
+//                }
+//            } else {
+//                $data['password'] = $user['User']['password'];
+//            }
+//            // pr($data);exit;
+//            //Save data into db
+//            if ($this->User->save($data)) {
+//                $this->Flash->success('Updated profile successfully !', array(
+//                    'key' => 'success_msg'
+//                ));
+//                return $this->redirect($this->referer());
+//            }
+//        }
+//        if (!$this->request->data) {
+//            $this->request->data = $user;
+//        }
+//        $this->set('certificates', $this->Certificate->getCertificates());
+//        $this->set('contracts', $this->Contract->getContracts());
+//        $this->set('roles', $this->Role->getRoles());
+//        $this->set('status', $this->Status->getStatus());
+//        $this->set('positions', $this->Position->getPositions());
+//        $this->set('data', $user);
+        $this->set('commons', [
+            'breadcrumbs' => [
+                ['User', ['controller' => 'users', 'action' => 'index']],
+                ['Edit']
+            ],
+            'header' => ['User', 'edit user information']
+        ]);
+    }
 
 }
