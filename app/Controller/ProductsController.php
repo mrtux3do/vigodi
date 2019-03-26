@@ -8,7 +8,7 @@ class ProductsController extends CommonController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('index', 'detail');
+		$this->Auth->allow('index', 'detail', 'listProduct');
 
 		$this->_user = $this->Auth->User();
 	}

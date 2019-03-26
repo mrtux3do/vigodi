@@ -122,21 +122,6 @@ $(document).ready(function(){
 		$('.login-popup').hide();
 	});
 
-	$('.hbh').hover(function(){
-		if($(".sub-menu-hbh:first").is( ":hidden" )){
-			$(".sub-menu-hbh").slideDown("slow");			
-		} else{
-			$(".sub-menu-hbh").hide();
-		}		
-	});
-
-	$('.hln').hover(function(){
-		if($(".sub-menu-hln:first").is( ":hidden" )){
-			$(".sub-menu-hln").slideDown("slow");			
-		} else{
-			$(".sub-menu-hln").hide();
-		}		
-	});
 
 	$('#plus').on('click', function(){
 		var quantity = $('#input-quantity').val();
@@ -152,7 +137,18 @@ $(document).ready(function(){
 		}
 	});
 
+	$('.filter-hbh').on('click', function(){
+		$(".sub-hbh").show();			
+	});
 
+	$('.filter-hln').on('click', function(){
+		$(".sub-hln").show();			
+	});
+
+	$('.custom-range').on('change', function(){
+		var value = $(this).val();
+		$('#val-price').text(value/1000 + "K");
+	});
 
 });
 
@@ -275,4 +271,3 @@ function imageZoom(imgID, resultID) {
 		return {x : x, y : y};
 	}
 }
-
