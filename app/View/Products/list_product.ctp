@@ -53,7 +53,7 @@
 			</div>
 		</div>
 		<div class="col-lg-9">
-			
+			<?php echo $this->element('list_product'); ?>
 		</div>
 	</div>
 </div>

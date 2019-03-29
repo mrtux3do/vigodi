@@ -23,7 +23,7 @@
     echo $this->Html->css('ace.min');
     echo $this->Html->css('ace-rtl.min');
     echo $this->Html->css('jquery-ui.min');
-    echo $this->Html->css('style');
+    //echo $this->Html->css('style');
 
     echo $this->fetch('css');
     ?>
