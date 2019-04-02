@@ -150,6 +150,15 @@ $(document).ready(function(){
 		$('#val-price').text(value/1000 + "K");
 	});
 
+
+	$('.btn-checkout-ok').on('click', function(){
+		$('.popup-cart').show();
+	});
+
+	$('.btn-back').on('click', function(){
+		window.location.href = location.protocol + "//" + document.domain;
+	});
+
 });
 
 //Add class first item and last item

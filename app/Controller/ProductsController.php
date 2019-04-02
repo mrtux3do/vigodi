@@ -8,7 +8,7 @@ class ProductsController extends CommonController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('index', 'detail', 'listProduct');
+		$this->Auth->allow('index', 'detail', 'listProduct', 'cart', 'address', 'infoCart');
 
 		$this->_user = $this->Auth->User();
 	}
@@ -42,7 +42,23 @@ class ProductsController extends CommonController {
 		$this->set(array('data' => $data, 'relate' => $relate_product, 'comments' => $comments));
 	}
 
+	//List product
 	public function listProduct(){
+	}
+
+	//List product that want to buy
+	public function cart(){
+	}
+
+
+	//address to ship
+	public function address(){
+
+	}
+
+	//Last step before buy successful
+	public function infoCart(){
+
 	}
 
 }
