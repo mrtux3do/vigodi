@@ -150,6 +150,18 @@ $(document).ready(function(){
 		$('#val-price').text(value/1000 + "K");
 	});
 
+
+	$('.btn-checkout-ok').on('click', function(){
+		$('.popup-cart').show();
+	});
+
+	$('.btn-back').on('click', function(){
+		window.location.href = location.protocol + "//" + document.domain;
+	});
+
+	//function search
+	search();
+
 });
 
 //Add class first item and last item
@@ -184,6 +196,14 @@ function trendClasses(){
 			// this is the last one
 			$(this).addClass('lastActiveItem');
 		}
+	});
+}
+
+
+function search(){
+	$('.btn-search').on('click', function(){
+		var res = $('.input-search').val();
+		console.log(res);
 	});
 }
 

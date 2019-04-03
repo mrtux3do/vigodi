@@ -60,9 +60,10 @@
 				</div>
 
 				<div id="search" class="col-lg-7">
-					<input type="text" name="search" placeholder="Search for products...">
-					<button class="btn-search"></button>
-					<!-- <span id="all-category">All Categories</span> -->
+					<form method="POST" action="/products/search">
+						<input class="input-search" type="text" name="search" placeholder="Search for products...">
+						<button class="btn-search"></button>
+					</form>
 				</div>
 
 				<div id="cart-wish" class="col-lg-3">

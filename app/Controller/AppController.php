@@ -32,6 +32,8 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+	public $components = array('Paginator', 'Session');
+
 	public $uses = array('Category');
 
 	public function beforeFilter() {
