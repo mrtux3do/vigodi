@@ -10,7 +10,7 @@
 		<div class="toolbar-amount">
 			<span>1 đến 16 sản phẩm (2 trang)</span>
 		</div>
-		<div class="toolbar-limit">
+		<div class="toolbar-limit" style="display: none;">
 			<select class="input-limit">
 				<option selected="selected">Hiển thị: 16</option>
 				<option>Hiển thị: 32</option>
@@ -28,206 +28,33 @@
 	</div>
 
 	<div class="custom-list-product">
-		<div class="product-grid item col-lg-3">
-			<div class="item-common-product">
-				<div class="img-common-product">
-					<a target="_blank" href="/products/detail?product_id=1">
-						<img style="width: 100%" src="/img/R_TG70.png">
-					</a>
-				</div>
-				<div class="desc-item-product">
-					<h1>
-						<a target="_blank" href="/products/detail?product_id=1">Socola Marou Tiền Giang 70%</a>
-					</h1>
-					<div class="rate-product">
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
+		<?php foreach($data as $res): ?>
+			<div class="product-grid item col-lg-3">
+				<div class="item-common-product">
+					<div class="img-common-product">
+						<a target="_blank" href="/products/detail?product_id=<?php echo $res['Product']['id'] ?>">
+							<img style="width: 100%" src="/<?php echo $res['Product']['image'] ?>">
+						</a>
 					</div>
-					<div class="product-price">
-						<span class="old-price">VNĐ30</span>
-						<span class="sale-price">VNĐ30</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="product-grid item col-lg-3">
-			<div class="item-common-product">
-				<div class="img-common-product">
-					<a target="_blank" href="/products/detail?product_id=1">
-						<img style="width: 100%" src="/img/R_TG70.png">
-					</a>
-				</div>
-				<div class="desc-item-product">
-					<h1>
-						<a target="_blank" href="/products/detail?product_id=1">Socola Marou Tiền Giang 70%</a>
-					</h1>
-					<div class="rate-product">
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-					</div>
-					<div class="product-price">
-						<span class="old-price">VNĐ30</span>
-						<span class="sale-price">VNĐ30</span>
+					<div class="desc-item-product">
+						<h1 style="height: 30px;">
+							<a target="_blank" href="/products/detail?product_id=<?php echo $res['Product']['id'] ?>"><?php echo $res['Product']['name'] ?></a>
+						</h1>
+						<div class="rate-product">
+							<div class="star star-on"></div>
+							<div class="star star-on"></div>
+							<div class="star star-on"></div>
+							<div class="star star-on"></div>
+							<div class="star star-on"></div>
+						</div>
+						<div class="product-price">
+							<span class="old-price"><?php echo $res['Product']['price'] ?>VND</span>
+							<span class="sale-price"><?php echo $res['Product']['sale_price'] ?>VND</span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="product-grid item col-lg-3">
-			<div class="item-common-product">
-				<div class="img-common-product">
-					<a target="_blank" href="/products/detail?product_id=1">
-						<img style="width: 100%" src="/img/R_TG70.png">
-					</a>
-				</div>
-				<div class="desc-item-product">
-					<h1>
-						<a target="_blank" href="/products/detail?product_id=1">Socola Marou Tiền Giang 70%</a>
-					</h1>
-					<div class="rate-product">
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-					</div>
-					<div class="product-price">
-						<span class="old-price">VNĐ30</span>
-						<span class="sale-price">VNĐ30</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="product-grid item col-lg-3">
-			<div class="item-common-product">
-				<div class="img-common-product">
-					<a target="_blank" href="/products/detail?product_id=1">
-						<img style="width: 100%" src="/img/R_TG70.png">
-					</a>
-				</div>
-				<div class="desc-item-product">
-					<h1>
-						<a target="_blank" href="/products/detail?product_id=1">Socola Marou Tiền Giang 70%</a>
-					</h1>
-					<div class="rate-product">
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-					</div>
-					<div class="product-price">
-						<span class="old-price">VNĐ30</span>
-						<span class="sale-price">VNĐ30</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="product-grid item col-lg-3">
-			<div class="item-common-product">
-				<div class="img-common-product">
-					<a target="_blank" href="/products/detail?product_id=1">
-						<img style="width: 100%" src="/img/R_TG70.png">
-					</a>
-				</div>
-				<div class="desc-item-product">
-					<h1>
-						<a target="_blank" href="/products/detail?product_id=1">Socola Marou Tiền Giang 70%</a>
-					</h1>
-					<div class="rate-product">
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-					</div>
-					<div class="product-price">
-						<span class="old-price">VNĐ30</span>
-						<span class="sale-price">VNĐ30</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="product-grid item col-lg-3">
-			<div class="item-common-product">
-				<div class="img-common-product">
-					<a target="_blank" href="/products/detail?product_id=1">
-						<img style="width: 100%" src="/img/R_TG70.png">
-					</a>
-				</div>
-				<div class="desc-item-product">
-					<h1>
-						<a target="_blank" href="/products/detail?product_id=1">Socola Marou Tiền Giang 70%</a>
-					</h1>
-					<div class="rate-product">
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-					</div>
-					<div class="product-price">
-						<span class="old-price">VNĐ30</span>
-						<span class="sale-price">VNĐ30</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="product-grid item col-lg-3">
-			<div class="item-common-product">
-				<div class="img-common-product">
-					<a target="_blank" href="/products/detail?product_id=1">
-						<img style="width: 100%" src="/img/R_TG70.png">
-					</a>
-				</div>
-				<div class="desc-item-product">
-					<h1>
-						<a target="_blank" href="/products/detail?product_id=1">Socola Marou Tiền Giang 70%</a>
-					</h1>
-					<div class="rate-product">
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-					</div>
-					<div class="product-price">
-						<span class="old-price">VNĐ30</span>
-						<span class="sale-price">VNĐ30</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="product-grid item col-lg-3">
-			<div class="item-common-product">
-				<div class="img-common-product">
-					<a target="_blank" href="/products/detail?product_id=1">
-						<img style="width: 100%" src="/img/R_TG70.png">
-					</a>
-				</div>
-				<div class="desc-item-product">
-					<h1>
-						<a target="_blank" href="/products/detail?product_id=1">Socola Marou Tiền Giang 70%</a>
-					</h1>
-					<div class="rate-product">
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-						<div class="star star-on"></div>
-					</div>
-					<div class="product-price">
-						<span class="old-price">VNĐ30</span>
-						<span class="sale-price">VNĐ30</span>
-					</div>
-				</div>
-			</div>
-		</div>					
+		<?php endforeach; ?>				
 	</div>
 
 	<div class="toolbar-product">
@@ -236,10 +63,10 @@
 		</div>
 		<div class="page">
 			<ul class="pagination">
-				<li><a href="#"></a></li>
+				<?php echo $this->Paginator->prev(__(''), array('tag' => 'li')); ?>
 				<li class="active"><a href="#">1</a></li>
 				<li><a href="#">2</a></li>
-				<li><a href="#"></a></li>
+				<?php echo $this->Paginator->next(__(''), array('tag' => 'li')); ?>
 			</ul>
 		</div>		
 	</div>

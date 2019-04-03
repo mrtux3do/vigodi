@@ -8,7 +8,7 @@ class ProductsController extends CommonController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('index', 'detail', 'listProduct', 'cart', 'address', 'infoCart');
+		$this->Auth->allow('index', 'detail', 'listProduct', 'cart', 'address', 'infoCart', 'search');
 
 		$this->_user = $this->Auth->User();
 	}
@@ -59,6 +59,18 @@ class ProductsController extends CommonController {
 	//Last step before buy successful
 	public function infoCart(){
 
+	}
+
+	public function search(){
+		if($this->request->is('post')){
+			$keyword = $this->request->data['search'];
+			$this->Paginator->settings = array(
+				'conditions' => array ('Product.name LIKE' => '%' . $keyword . '%'),
+				'limit' => 4
+			);
+			$data = $this->Paginator->paginate('Product');
+			$this->set('data', $data);
+		}
 	}
 
 }
