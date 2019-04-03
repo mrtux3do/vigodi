@@ -20,7 +20,7 @@
 				<h2>Phạm Minh Tuấn</h2>
 				<p>Địa chỉ: 241 Xuân Thuỷ, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội</p>
 				<p>Điện thoại: 0977932377</p>
-				<button class="btn-product">Giao hàng đến địa chỉ này</button>
+				<a href="/products/infoCart"><button class="btn-product">Giao hàng đến địa chỉ này</button></a>
 				<button class="btn-edit-addr" style="margin-left: 30px">Sửa</button>
 			</div>
 			<h2>Bạn muốn giao hàng đến địa chỉ khác? <a href="#" style="text-decoration: none; color: #eab90a">Thêm địa chỉ giao hàng mới</a></h2>

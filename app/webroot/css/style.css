@@ -2198,6 +2198,7 @@ li#compare:after{
 	border: 1px solid #ebebeb;
 	border-right: 0;
 	border-bottom: 0;
+	border-top: 0;
 	display: inline-block;
 	vertical-align: top;
 	width: 100%;
@@ -2208,7 +2209,6 @@ li#compare:after{
 .product-grid.item{
 	border: 1px solid #ebebeb;
 	border-left: 0;
-	border-top: 0;
 }
 
 .toolbar-product .page ul li a {
