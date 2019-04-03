@@ -45,4 +45,18 @@ class CommonController extends AppController {
 
         $this->set('user', $this->Auth->user());
 	}
+
+	protected function _getRoleName($roleId) {
+        $roleName = "";
+        switch($roleId) {
+            case 1:
+                $roleName =  "Normal User";
+                break;
+            case 2:
+                $roleName = "Admin";
+                break;
+            default:
+        }
+        return $roleName;
+    }
 }

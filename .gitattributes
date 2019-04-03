@@ -34,5 +34,6 @@
 *.mo binary
 *.pdf binary
 *.woff binary
+*.woff2 binary
 *.ttf binary
 *.eot binary
