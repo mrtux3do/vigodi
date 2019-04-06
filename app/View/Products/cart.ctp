@@ -23,27 +23,27 @@
 						<th>Số lượng</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="cart-id" card_id="<?php echo $cart_id?>">
 					<?php if(isset($products)): ?>
 					<?php foreach($products as $val): ?>
 					<tr>
 						<td>
 							<a href="#">
-								<img src="<?php echo $this->webroot . $val['image'];?>">
+								<img src="<?php echo $this->webroot . $val['Product']['image'];?>">
 							</a>
 						</td>
 						<td style="text-transform: capitalize; text-align: center;">
-							<?php echo $val['name'];?>
+							<?php echo $val['Product']['name'];?>
 						</td>
 						<td style="text-align: center;">
-							<?php echo $val['sale_price'];?>
+							<?php echo $val['Product']['sale_price'];?>
 						</td>
 						<td>
-							<div class="quantity-product" style="vertical-align: top;">
+							<div class="quantity-product" style="vertical-align: top;" cart_product_id="<?php echo $val['CartProduct']['id']; ?>">
 								<div class="quantity-box">
-									<input type="button" id="minus" value="-">
-									<input type="text" name="quantity" value="<?php echo $val['number'];?>" size="2" id="input-quantity">
-									<input type="button" id="plus" value="+">
+									<input type="button" class="cart-minus" value="-">
+									<input type="text" name="quantity" value="<?php echo $val['Product']['number'];?>" size="2" class="cart-input-quantity">
+									<input type="button" class="cart-plus" value="+">
 								</div>
 								<div class="form-del">
 									<label>Xoá</label>
@@ -64,11 +64,11 @@
 			</div>
 			<div class="list-info-price">
 				<span>Tạm tính:</span>
-				<strong><?php echo $total;?>.000VND</strong>
+				<strong class="cart-total"><?php echo $total;?>.000VND</strong>
 			</div>
 			<div class="amount-info-price">
 				<span>Thành tiền:</span>
-				<strong><?php echo $total;?>.000VND</strong>
+				<strong class="cart-total"><?php echo $total;?>.000VND</strong>
 				<div>(Đã bao gồm VAT)</div>
 			</div>
 			<a href="/products/address?cart_id=<?php echo $cart_id;?>"> <button class="btn-checkout">

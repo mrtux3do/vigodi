@@ -143,6 +143,52 @@ $(document).ready(function(){
 			$('#input-quantity').val(quantity);			
 		}
 	});
+	//list cart
+	$('.cart-minus').on('click', function(){
+		var quantity = $(this).next().val();
+		var cart_product_id = $(".cart-minus").parents(".quantity-product").attr("cart_product_id");
+
+		if(quantity >= 2){
+			quantity = parseInt(quantity) - 1;
+			$(this).next().val(quantity);
+			updateCart(cart_product_id, quantity);			
+		}
+	});
+
+	//list cart
+	$('.cart-plus').on('click', function(){
+		var quantity = $(this).prev().val();
+		var cart_product_id = $(".cart-plus").parents(".quantity-product").attr("cart_product_id");
+		quantity = parseInt(quantity) + 1;
+		$(this).prev().val(quantity);
+		updateCart(cart_product_id, quantity);			
+	});
+
+	//delete cart
+	$('.btn-del-cart').on('click', function(){
+		var cart_product_id = $(this).parents(".quantity-product").attr("cart_product_id");
+
+		$.ajax({
+	        method: 'POST',
+	        url: pathname + '/Ajax/deleteCart/',
+	        dataType: 'json',
+	        data: {
+	            cart_product_id: cart_product_id,
+	            },
+	        success: function(response) {
+	            console.log(response)
+	            if (response.status == true) {       
+	            	$(".cart-total").text(response.total);      
+	                location.href = pathname + "/products/cart";
+	            }
+	        },
+	        error: function(xhr, status, err) {
+	            console.log(xhr);
+	            console.log(status);
+	            console.log(err);
+	        },
+	    });
+	})
 
 	$('.filter-hbh').on('click', function(){
 		$(".sub-hbh").show();			
@@ -204,6 +250,32 @@ function trendClasses(){
 			$(this).addClass('lastActiveItem');
 		}
 	});
+}
+
+function updateCart(cart_product_id, value) {
+	var pathname = window.location.protocol + "//" + window.location.host;
+
+	$.ajax({
+        method: 'POST',
+        url: pathname + '/Ajax/updateCart/',
+        dataType: 'json',
+        data: {
+            cart_product_id: cart_product_id,
+            number: value
+            },
+        success: function(response) {
+            console.log(response)
+            if (response.status == true) {  
+            	$("#cart-number").text(response.cart_number);             
+                $(".cart-total").text(response.total);
+            }
+        },
+        error: function(xhr, status, err) {
+            console.log(xhr);
+            console.log(status);
+            console.log(err);
+        },
+    });
 }
 
 

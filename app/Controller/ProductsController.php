@@ -16,6 +16,7 @@ class ProductsController extends CommonController {
 		//find number cart
 		if (!empty($this->_user)) {		
 			$carts = $this->__getCart();
+$this->log($carts);
 			$this->_cartId = $carts['cart_id'];
 			$this->set('cart', $carts['cart_number']);    
 		}		
@@ -146,54 +147,4 @@ class ProductsController extends CommonController {
 			$this->set('data', $data);
 		}
 	}
-
-	private function __getCart() {
-		$products = array();
-		$cart_number = 0;
-		$total = 0;
-		$cart_id = '';
-
-		$cart = $this->Cart->find('first', array(
-			'conditions' => array(
-            	'Cart.user_id' => $this->_user['id']
-            ),
-            'order' => array(
-            	'Cart.id' => 'desc'
-            )
-        ));
-        $this->log($cart);
-        if (!empty($cart)) {
-        	$order = $this->Order->find('first', array(
-        		'conditions' => array('Order.cart_id' => $cart['Cart']['id']),
-				'order' => array('Order.id' => 'desc')        			
-            ));
-
-            if(empty($order)) {
-            	$cart_product = $this->CartProduct->find('all', array(
-            		'conditions' => array(
-            			'CartProduct.cart_id' => $cart['Cart']['id']
-            		)
-            	));
-
-            	foreach ($cart_product as $value) {
-            		$cart_number += $value['CartProduct']['number'];
-            		$value['Product']['number'] = $value['CartProduct']['number'];
-            		array_push($products, $value['Product']);
-            		$total += $value['CartProduct']['number'] * $value['Product']['sale_price'];
-            	}           	
-            }
-
-            $cart_id = $cart['Cart']['id'];
-        }	
-
-        $data = array(
-        	'products' => $products,
-        	'cart_number' => $cart_number,
-        	'total' => $total,
-        	'cart_id' => $cart_id
-        );
-
-        return $data;     
-	}
-
 }

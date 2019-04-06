@@ -65,13 +65,20 @@ $(document).ready(function(){
 
     $(".btn-checkout-ok").click(function(e) {
         var cart_id = getUrlVars()['cart_id'];
-
+        var name = $("#info-name").text();
+        var email = $("#info-email").text();
+        var address = $("#info-address").text();
+        var phone = $("#info-phone").text();
         $.ajax({
             method: 'POST',
             url: pathname + '/Ajax/order/',
             dataType: 'json',
             data: {
-                cart_id: cart_id
+                cart_id: cart_id,
+                name : name,
+                email: email,
+                address: address,
+                phone: phone
                 },
             success: function(response) {
                 console.log(response)
@@ -105,8 +112,7 @@ function addToCart() {
         success: function(response) {
             console.log(response)
             if (response.status == true) {
-                $("#cart span").html(response.number);
-                console.log("good");
+                location.href = pathname + "/products/cart";
             }
         },
         error: function(xhr, status, err) {

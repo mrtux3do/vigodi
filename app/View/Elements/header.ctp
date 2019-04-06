@@ -17,22 +17,24 @@
 						<li>Help & Contact</li>
 						<li>Order Status</li>
 						<li id="myaccount">
-							<p><?php if(!empty($user)) {
-										echo $user['name'];
+							<p><?php if(!empty($infoUser)) {
+										echo $infoUser['name'] . ' ' . $infoUser['f_name'];
 									} else {echo "My Account";}
 							?></p>
 							<ul id="account">
 								<li> 
-									<?php echo $this->Html->link( 'Register', 
-										array(
-											'controller' => 'Users',
-											'action' => 'register',
-											'full_base' => true
-										)); 
+									<?php if(empty($infoUser)) {
+										echo $this->Html->link( 'Register', 
+											array(
+												'controller' => 'Users',
+												'action' => 'register',
+												'full_base' => true
+											)); 
+										}
 									?>
 								</li>
 								<li> 
-									<a class="btn-popup"> <?php if(!empty($user)) {
+									<a class="btn-popup"> <?php if(!empty($infoUser)) {
 										echo $this->Html->link( 'Logout', 
 												array(
 													'controller' => 'Auth',
@@ -71,7 +73,7 @@
 						<li id="compare"><span>0</span></li>
 						<li id="wishlist"><span>0</span></li>
 						<li id="cart">
-							<span><?php if (isset($cart)) { echo $cart; } else {echo 0;} ?></span>
+							<span id="cart-number"><?php if (isset($cart)) { echo $cart; } else {echo 0;} ?></span>
 						</li>
 					</ul>
 					<div class="cart-noti">
