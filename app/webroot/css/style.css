@@ -1455,7 +1455,7 @@ li#compare:after{
 }
 
 /*------------------------ Login Popup --------------------------*/
-.login-popup{
+.login-popup, .login-popup-cart{
 	display: none;
 	position: fixed;
 	z-index: 999999;
@@ -1478,7 +1478,7 @@ li#compare:after{
 	transform: translate(-50%, -50%);
 }
 
-#btn-close, #btn-close-cart{
+#btn-close, #btn-close-cart, #btn-close-login{
 	width: 30px;
 	height: 30px;
 	background: black;
@@ -1488,15 +1488,15 @@ li#compare:after{
 	cursor: pointer;	
 }
 
-#btn-close:hover, #btn-close-cart:hover{
+#btn-close:hover, #btn-close-cart:hover, #btn-close-login:hover{
 	background: #eab90a;
 }
 
-#btn-close:hover::before, #btn-close-cart:hover::before{
+#btn-close:hover::before, #btn-close-cart:hover::before, #btn-close-login:hover::before{
 	background: #eab90a;
 }
 
-#btn-close:before, #btn-close-cart:before{
+#btn-close:before, #btn-close-cart:before, #btn-close-login:before{
 	font-family: 'FontAwesome' !important;
 	content: '\f00d';
 	position: absolute;
@@ -1807,7 +1807,7 @@ li#compare:after{
 	cursor: pointer;
 }
 
-#input-quantity {
+.input-quantity {
 	width: 36px;
 	margin: 0 1px;
 	min-width: auto;

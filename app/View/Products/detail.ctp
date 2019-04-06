@@ -138,6 +138,24 @@
 		</div>
 	</row>
 </div>
+
+<div class="login-popup-cart">
+	<div class="pop-up-content">
+		<label id="btn-close-login"></label>
+		<form method="POST" action="">
+			<div class="form-group" style="margin-bottom: 50px">
+				<label>Email</label>
+				<input type="email" name="email" id="email-cart" required placeholder="email">
+			</div>
+			<div class="form-group">
+				<label>Password</label>
+				<input type="password" name="password" id="password-cart" required placeholder="password">
+			</div>
+			<button type="button" id="btn-login-cart">Log in</button>
+		</form>
+	</div>
+</div>
+
 <script type="text/javascript">
 	//Zoom image
 	imageZoom("zoom-img", "img-result");

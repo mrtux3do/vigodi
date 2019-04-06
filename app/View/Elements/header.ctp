@@ -71,7 +71,7 @@
 						<li id="compare"><span>0</span></li>
 						<li id="wishlist"><span>0</span></li>
 						<li id="cart">
-							<span>0</span>
+							<span><?php if (isset($cart)) { echo $cart; } else {echo 0;} ?></span>
 						</li>
 					</ul>
 					<div class="cart-noti">

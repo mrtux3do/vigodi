@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	var pathname = window.location.protocol + "//" + window.location.host;
 
 	/* start show noti */
 	$("body").click(function(){
@@ -7,7 +8,13 @@ $(document).ready(function(){
 
 	$("#cart").click(function(event) {
 		event.stopPropagation();
-		$('.cart-noti').show();
+		var no = $("#cart span").html();
+		console.log(no);
+		if (no == 0) {
+			$('.cart-noti').show();
+		} else {
+			location.href = pathname + "/products/cart";
+		}		
 	});
 	/* end show noti */
 

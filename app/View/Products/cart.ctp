@@ -24,23 +24,25 @@
 					</tr>
 				</thead>
 				<tbody>
+					<?php if(isset($products)): ?>
+					<?php foreach($products as $val): ?>
 					<tr>
 						<td>
 							<a href="#">
-								<img src="<?php echo $this->webroot ?>img/R_BR76.png">
+								<img src="<?php echo $this->webroot . $val['image'];?>">
 							</a>
 						</td>
 						<td style="text-transform: capitalize; text-align: center;">
-							Socola marou bà rịa 76%
+							<?php echo $val['name'];?>
 						</td>
 						<td style="text-align: center;">
-							30.000VND
+							<?php echo $val['sale_price'];?>
 						</td>
 						<td>
 							<div class="quantity-product" style="vertical-align: top;">
 								<div class="quantity-box">
 									<input type="button" id="minus" value="-">
-									<input type="text" name="quantity" value="1" size="2" id="input-quantity">
+									<input type="text" name="quantity" value="<?php echo $val['number'];?>" size="2" id="input-quantity">
 									<input type="button" id="plus" value="+">
 								</div>
 								<div class="form-del">
@@ -49,7 +51,9 @@
 								</div>
 							</div>
 						</td>
-					</tr>				
+					</tr>
+					<?php endforeach; ?>
+					<?php endif; ?>					
 				</tbody>
 			</table>
 		</div>
@@ -60,14 +64,14 @@
 			</div>
 			<div class="list-info-price">
 				<span>Tạm tính:</span>
-				<strong>30.000VND</strong>
+				<strong><?php echo $total;?>.000VND</strong>
 			</div>
 			<div class="amount-info-price">
 				<span>Thành tiền:</span>
-				<strong>30.000VND</strong>
+				<strong><?php echo $total;?>.000VND</strong>
 				<div>(Đã bao gồm VAT)</div>
 			</div>
-			<a href="/products/address"> <button class="btn-checkout">
+			<a href="/products/address?cart_id=<?php echo $cart_id;?>"> <button class="btn-checkout">
 				Tiến hành đặt hàng
 			</button> </a>
 		</div>
