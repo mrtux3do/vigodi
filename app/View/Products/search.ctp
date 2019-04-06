@@ -4,7 +4,6 @@
 			<div id="breadcrumbs">
 				<ul>
 					<li><a href="/">Home</a></li>
-					<li>Socola Marou</li>
 				</ul>
 			</div>
 		</div>
@@ -53,7 +52,9 @@
 			</div>
 		</div>
 		<div class="col-lg-9">
-			<?php echo $this->element('list_product'); ?>
+			<?php if(isset($data)): ?>
+				<?php echo $this->element('list_product', array('data', $data)); ?>
+			<?php endif; ?>
 		</div>
 	</div>
 </div>

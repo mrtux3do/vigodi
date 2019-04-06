@@ -13,7 +13,6 @@
     <meta name="description" content="Static &amp; Dynamic Tables" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/font-awesome/4.5.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/css/fonts.googleapis.com.css" />
@@ -69,7 +68,7 @@
     <!-- ace scripts -->
     <script src="/js/ace-elements.min.js"></script>
     <script src="/js/ace.min.js"></script>
-
+    
 </head>
 <body class="no-skin">
 <!-- Header -->
