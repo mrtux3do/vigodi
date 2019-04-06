@@ -9,7 +9,7 @@ class AdminController extends CommonController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('index', 'detail');
+        $this->Auth->allow('index', 'detail', 'listCart');
 
         $this->_user = $this->Auth->User();
     }
@@ -28,6 +28,19 @@ class AdminController extends CommonController {
     //
     public function detail(){
 
+    }
+
+    // order list
+    public function listCart() {
+        $this->set('commons', [
+            'breadcrumbs' => [
+                ['Admin', ['controller' => 'admin', 'action' => 'list']],
+                ['List']
+            ],
+            'header' => ['Cart', 'List']
+        ]);
+
+        $this->render('list');
     }
 
 
