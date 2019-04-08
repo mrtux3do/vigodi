@@ -83,7 +83,7 @@
 
 			<div class="row">
 				<div class="col-lg-9">
-					<div class="hot-deal">
+<!-- 					<div class="hot-deal">
 						<div class="title-deal">
 							<h2> hot deals</h2>
 						</div>
@@ -279,7 +279,48 @@
 							</div>
 						</div>
 					</div>
-
+ -->
+					
+					<div class="form-list-product">
+						<div class="title-product">
+							<h2>Mây tre đan cói</h2>
+						</div>
+						<div class="relate-product-slide common-box owl-carousel owl-theme owl-loaded">
+							<?php if(isset($data)): ?>
+								<?php foreach($data as $val): ?>
+									<?php if($val['Product']['category_id'] == 2): ?>
+										<div class="item-common-product">
+											<div class="img-common-product">
+												<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>">
+													<img src="<?php echo $this->webroot.$val['Product']['image'] ?>">
+												</a>
+												<div class="product-flag">
+													<!-- <div class="discount-percent-tag"> 20% </div> -->
+													<div class="new-tag">New</div>
+												</div>
+											</div>
+											<div class="desc-item-product">
+												<h1>
+													<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>"><?php echo $val['Product']['name'] ?></a>
+												</h1>
+												<div class="rate-product">
+													<div class="star star-on"></div>
+													<div class="star star-on"></div>
+													<div class="star star-on"></div>
+													<div class="star star-on"></div>
+													<div class="star star-on"></div>
+												</div>
+												<div class="product-price">
+													<span class="old-price"><?php echo "VNĐ".$val['Product']['price'] ?></span>
+													<span class="sale-price"><?php echo "VNĐ".$val['Product']['price'] ?></span>
+												</div>
+											</div>
+										</div>
+									<?php endif; ?>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</div>
+					</div>
 					<div class="banner-ads-deal">
 						<a href="#">
 							<img src="<?php echo $this->webroot ?>img/banner-ads-1.jpg">
@@ -288,7 +329,10 @@
 
 					<div class="trending-product">
 						<div class="title-trending-product">
-							<h2>Socola Marou</h2>
+							<a class="list-product" href="<?php echo $this->Html->url(array(
+														'controller' => 'products', 
+														'action' => 'listProduct', 
+														'?' => array('category_id' => 1)))?>"><h2>Socola Marou</h2></a>
 							<div class="tab-trending">
 								<div class="tab-name">
 									<ul class="nav my-tabs" role="tablist">

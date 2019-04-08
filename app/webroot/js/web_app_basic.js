@@ -30,7 +30,7 @@ $(document).ready(function(){
 	$(".relate-product-slide").owlCarousel({
 		loop:true,
 		items: 4,
-		margin: 25,
+		// margin: 25,
 		dots: false,
 		nav: true,
 		slideBy: 4

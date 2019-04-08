@@ -28,17 +28,16 @@
 	</div>
 
 	<div class="custom-list-product">
-		<?php foreach($data as $res): ?>
 			<div class="product-grid item col-lg-3">
 				<div class="item-common-product">
 					<div class="img-common-product">
-						<a target="_blank" href="/products/detail?product_id=<?php echo $res['Product']['id'] ?>">
-							<img style="width: 100%" src="/<?php echo $res['Product']['image'] ?>">
+						<a target="_blank" href="">
+							<img style="width: 100%" src="">
 						</a>
 					</div>
 					<div class="desc-item-product">
 						<h1 style="height: 30px;">
-							<a target="_blank" href="/products/detail?product_id=<?php echo $res['Product']['id'] ?>"><?php echo $res['Product']['name'] ?></a>
+							<a target="_blank" href=""></a>
 						</h1>
 						<div class="rate-product">
 							<div class="star star-on"></div>
@@ -48,13 +47,12 @@
 							<div class="star star-on"></div>
 						</div>
 						<div class="product-price">
-							<span class="old-price"><?php echo $res['Product']['price'] ?>VND</span>
-							<span class="sale-price"><?php echo $res['Product']['sale_price'] ?>VND</span>
+							<span class="old-price"></span>
+							<span class="sale-price"></span>
 						</div>
 					</div>
 				</div>
-			</div>
-		<?php endforeach; ?>				
+			</div>				
 	</div>
 
 	<div class="toolbar-product">
