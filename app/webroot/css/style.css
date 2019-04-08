@@ -1791,7 +1791,7 @@ li#compare:after{
 	margin-bottom: 40px;
 }
 
-#minus, #plus {
+#minus, #plus, .cart-minus, .cart-plus{
 	height: 30px;
 	box-shadow: none;
 	font-weight: 400;
