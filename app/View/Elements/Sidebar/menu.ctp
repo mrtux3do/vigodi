@@ -48,7 +48,7 @@ $action = !empty($this->params['action']) ? $this->params['action'] : "";
         </li>
 
         <!-- User -->
-        <li class="<?php echo ($controller == "users" && ($action == 'index' || $action == 'add')) ? 'active open' : '';?>">
+        <li class="<?php echo ($controller == "users") ? 'active open' : '';?>">
             <a href="javascript:void(0);" class="dropdown-toggle">
                 <i class="menu-icon fa fa-users"></i>
                 <span class="menu-text"> Quản Lý Người Dùng </span>
@@ -59,7 +59,7 @@ $action = !empty($this->params['action']) ? $this->params['action'] : "";
             <b class="arrow"></b>
 
             <ul class="submenu">
-                <li class="<?php echo ($controller == "users" && $action == 'add') ? 'active' : '';?>">
+                <li class="<?php echo ($controller == "users" && $action == 'index') ? 'active' : '';?>">
                     <a href="<?php echo $this->Html->url(['controller' => 'users', 'action' => 'index']); ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Danh sách
@@ -92,8 +92,8 @@ $action = !empty($this->params['action']) ? $this->params['action'] : "";
             <b class="arrow"></b>
 
             <ul class="submenu">
-                <li class="<?php echo ($controller == "products" && $action == 'index') ? 'active' : '';?>">
-                    <a href="<?php echo $this->Html->url(['controller' => 'products', 'action' => 'index']); ?>">
+                <li class="<?php echo ($controller == "products" && $action == 'listProductAdmin') ? 'active' : '';?>">
+                    <a href="<?php echo $this->Html->url(['controller' => 'products', 'action' => 'listProductAdmin']); ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Danh sách
                     </a>
@@ -101,8 +101,8 @@ $action = !empty($this->params['action']) ? $this->params['action'] : "";
                     <b class="arrow"></b>
                 </li>
 
-                <li class="<?php echo ($controller == "products" && $action == 'add') ? 'active' : '';?>">
-                    <a href="<?php echo $this->Html->url(['controller' => 'products', 'action' => 'add']); ?>">
+                <li class="<?php echo ($controller == "products" && $action == 'addProduct') ? 'active' : '';?>">
+                    <a href="<?php echo $this->Html->url(['controller' => 'products', 'action' => 'addProduct']); ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Tạo mới
                     </a>
@@ -112,8 +112,8 @@ $action = !empty($this->params['action']) ? $this->params['action'] : "";
             </ul>
         </li>
 
-        <!-- Product -->
-        <li class="<?php echo ($controller == "products") ? 'active open' : '';?>">
+        <!-- Order -->
+        <li class="<?php echo ($controller == "admin") ? 'active open' : '';?>">
             <a href="javascript:void(0);" class="dropdown-toggle">
                 <i class="menu-icon fa fa-file-text"></i>
                 <span class="menu-text">Quản Lý Đơn Hàng</span>
@@ -124,8 +124,8 @@ $action = !empty($this->params['action']) ? $this->params['action'] : "";
             <b class="arrow"></b>
 
             <ul class="submenu">
-                <li class="<?php echo ($controller == "products" && $action == 'index') ? 'active' : '';?>">
-                    <a href="<?php echo $this->Html->url(['controller' => 'Admin', 'action' => 'listCart']); ?>">
+                <li class="<?php echo ($controller == "admin" && $action == 'listCart') ? 'active' : '';?>">
+                    <a href="<?php echo $this->Html->url(['controller' => 'admin', 'action' => 'listCart']); ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Danh sách
                     </a>
@@ -133,14 +133,6 @@ $action = !empty($this->params['action']) ? $this->params['action'] : "";
                     <b class="arrow"></b>
                 </li>
 
-                <li class="<?php echo ($controller == "products" && $action == 'add') ? 'active' : '';?>">
-                    <a href="<?php echo $this->Html->url(['controller' => 'products', 'action' => 'add']); ?>">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Tạo mới
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
             </ul>
         </li>
 
