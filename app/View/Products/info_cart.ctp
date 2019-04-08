@@ -30,11 +30,11 @@
 					</div>
 					<div class="list-info-price">
 						<span>Tạm tính:</span>
-						<strong><?php echo $total;?>.000VND</strong>
+						<strong><?php echo $total;?> VND</strong>
 					</div>
 					<div class="amount-info-price">
 						<span>Thành tiền:</span>
-						<strong><?php echo $total;?>.000VND</strong>
+						<strong><?php echo $total;?> VND</strong>
 						<div>(Đã bao gồm VAT)</div>
 					</div>
 				</div>

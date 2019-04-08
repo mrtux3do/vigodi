@@ -24,8 +24,8 @@
 					} else echo "Chua co dia chi";?>
 				</p>
 				<p>Dien thoai:<?php echo $user['User']['phone']; ?></p>
-				<a href="/products/infoCart?cart_id=<?php echo $cart_id;?>"><button class="btn-product" type="button" <?php if (!isset($user['User']['address'])){ ?> disabled <?php } ?>>Giao hàng đến địa chỉ này</button></a>
-				<button class="btn-edit-addr" style="margin-left: 30px">Sửa</button>
+				<a href="/products/infoCart?cart_id=<?php echo $cart_id;?>"><button class="btn-product" type="button" <?php if (!isset($user['User']['address'])){ ?> disabled class="btn-disable" <?php } ?>>Giao hàng đến địa chỉ này</button></a>
+				<!-- <button class="btn-edit-addr" style="margin-left: 30px">Sửa</button> -->
 			</div>
 			<h2>Bạn muốn giao hàng đến địa chỉ khác? <a href="#" style="text-decoration: none; color: #eab90a">Thêm địa chỉ giao hàng mới</a></h2>
 			<div class="form-add-addr">
