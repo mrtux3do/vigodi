@@ -152,6 +152,7 @@
 				<input type="password" name="password" id="password-cart" required placeholder="password">
 			</div>
 			<button type="button" id="btn-login-cart">Log in</button>
+			<a href="/Users/register"><button type="button" id="btn-register-cart">Register</button></a>
 		</form>
 	</div>
 </div>

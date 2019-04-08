@@ -1510,7 +1510,7 @@ li#compare:after{
 	cursor: pointer;
 }
 
-#email, #password{
+#email, #password, #email-cart, #password-cart{
 	width: 500px;
 	height: 45px;
 	outline: none;
@@ -1524,7 +1524,7 @@ li#compare:after{
 	color: #c9c9c9;
 }
 
-.login-popup label, .login label{
+.login-popup label, .login label, .login-popup-cart label{
 	width: 50px;
 	margin-right: 30px;
 	text-align: right;
@@ -1535,7 +1535,7 @@ li#compare:after{
 	text-align: center;
 }
 
-#btn-login{
+#btn-login, #btn-login-cart, #btn-register-cart{
 	width: 80px;
 	height: 40px;
 	background: #eab90a;
@@ -2412,6 +2412,11 @@ li#compare:after{
 	background: #eab90a;
 	color: #fff;
 	opacity: 0.8;
+}
+
+.form-addr button:disabled{
+	background: #c3c3c3;
+	border: 1px solid #c3c3c3;
 }
 
 .form-addr button:hover{
