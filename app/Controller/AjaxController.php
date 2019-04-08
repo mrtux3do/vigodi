@@ -11,7 +11,7 @@ class AjaxController extends CommonController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('login');
+        $this->Auth->allow('login', 'postComment', 'addToCart', 'order', 'updateCart', 'deleteCart');
 		$this->_user = $this->Auth->User();
     }
 
