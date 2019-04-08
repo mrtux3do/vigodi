@@ -16,7 +16,6 @@ class ProductsController extends CommonController {
 		//find number cart
 		if (!empty($this->_user)) {		
 			$carts = $this->__getCart();
-$this->log($carts);
 			$this->_cartId = $carts['cart_id'];
 			$this->set('cart', $carts['cart_number']);    
 		}		
@@ -53,6 +52,12 @@ $this->log($carts);
 
 	//List product
 	public function listProduct(){
+		$category_id = $this->request->query['category_id'];
+		$data = $this->Product->find('all', array(
+			'conditions' => array('Product.category_id' => $category_id)
+		));
+
+		return json_encode($data);
 	}
 
 	//List product that want to buy

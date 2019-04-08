@@ -13,8 +13,6 @@ class AuthController extends CommonController {
 	}
 
 	public function login() {
-		$this->autoLayout = false;
-		$this->autoRender = false;
 		//not login
 		if ($this->request->is('post')) {
 		    $this->set('login', true);
