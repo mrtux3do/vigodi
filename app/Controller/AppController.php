@@ -32,13 +32,14 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+	public $helpers = array('Paginator','Html');
 	public $components = array('Paginator', 'Session');
 
 	public $uses = array('Category');
 
 	public function beforeFilter() {
-	    parent::beforeFilter();
-	    $this->getCategory();
+		parent::beforeFilter();
+		$this->getCategory();
 	}
 
 	public function getCategory(){

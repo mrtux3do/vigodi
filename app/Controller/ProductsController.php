@@ -3,13 +3,14 @@
 App::uses('CommonController', 'Controller');
 
 class ProductsController extends CommonController {
-	public $uses = array('Product', 'Comment', 'Cart', 'Order', 'CartProduct', 'User', 'Address');
+	public $uses = array('Product', 'Comment', 'Cart', 'Order', 'CartProduct', 'User', 'Address', 'Category');
 	private $_user;
 	private $_cartId;
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('index', 'detail', 'listProduct', 'search');
+
+		$this->Auth->allow('index', 'detail', 'listProduct', 'search', 'newProduct');
 
 		$this->_user = $this->Auth->User();
 
@@ -25,9 +26,11 @@ class ProductsController extends CommonController {
 	public function index(){
 		$data = $this->Product->find('all');
 		$this->set('data', $data);
+
 		if (!empty($this->_user)) {
 			$this->set('user', $this->_user);
 		}
+		$this->newProduct();
 	}
 
 	//Product detail
@@ -59,11 +62,16 @@ class ProductsController extends CommonController {
 	//List product
 	public function listProduct(){
 		$category_id = $this->request->query['category_id'];
-		$data = $this->Product->find('all', array(
-			'conditions' => array('Product.category_id' => $category_id)
+		$this->Paginator->settings = array(
+			'conditions' => array('Product.category_id' => $category_id),
+			'limit' => 16
+		);
+		$name_category = $this->Category->find('first', array(
+			'conditions' => array('Category.id' => $category_id),
+			'fields' => array('Category.category_name')
 		));
-
-		return json_encode($data);
+		$data = $this->Paginator->paginate('Product');
+		$this->set(compact('data', 'name_category'));
 	}
 
 	//List product that want to buy
@@ -148,14 +156,56 @@ class ProductsController extends CommonController {
 	}
 
 	public function search(){
-		if($this->request->is('post')){
-			$keyword = $this->request->data['search'];
+		if($this->request->is('get')){
+			$keyword = $this->request->query['search'];
 			$this->Paginator->settings = array(
 				'conditions' => array ('Product.name LIKE' => '%' . $keyword . '%'),
-				'limit' => 4
+				'limit' => 16
 			);
 			$data = $this->Paginator->paginate('Product');
-			$this->set('data', $data);
+			$this->set(compact('data'));
 		}
 	}
+
+	public function newProduct(){
+		$new_product = $this->Product->find('all', array(
+			'order' => array('id' => 'DESC'),
+			'limit' => 10
+		));
+
+		$this->log($new_product);
+		$this->set('new_product', $new_product);
+		$this->render('index');
+	}
+
+    //admin action
+    //
+    public function listProductAdmin() {
+        $this->layout = 'admin';
+
+        $products = $this->Product->find('all');
+
+        $this->set('products', $products);
+    }
+
+    public function addProduct() {
+        $this->layout = 'admin';
+
+    }
+
+    public function detailProduct() {
+        $this->layout = 'admin';
+
+        $id = $this->request->pass[0];
+        $product = $this->Product->findById($id);
+
+        $this->set("product", $product);
+        $this->set('commons', [
+            'breadcrumbs' => [
+                ['User', ['controller' => 'products', 'action' => 'detailProduct']],
+                ['Profile']
+            ],
+            'header' => ['Sản phẩm', 'Thông tin chi tiết']
+        ]);
+    }
 }
