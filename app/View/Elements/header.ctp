@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div id="content-header">
-				<div id="lang-mo">
+<!-- 				<div id="lang-mo">
 					<ul>
 						<li id="language"> 
 							<p class="eng"> EN </p>
@@ -10,7 +10,7 @@
 						</li>
 						<li> USD </li>
 					</ul>
-				</div>
+				</div> -->
 
 				<div id="menu-top" class="pull-right">
 					<ul>

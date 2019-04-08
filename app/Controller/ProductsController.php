@@ -16,7 +16,6 @@ class ProductsController extends CommonController {
 		//find number cart
 		if (!empty($this->_user)) {		
 			$carts = $this->__getCart();
-$this->log($carts);
 			$this->_cartId = $carts['cart_id'];
 			$this->set('cart', $carts['cart_number']);    
 		}		
