@@ -40,7 +40,15 @@ $(document).ready(function(){
 		// margin: 25,
 		dots: false,
 		nav: true,
-		slideBy: 4
+		slideBy: 4,
+		responsive:{
+			0: {
+				items: 2
+			},
+			1200:{
+				items: 4
+			}
+		}
 	});
 	relateClasses()
 	$(".relate-product-slide").on('translated.owl.carousel', function(event) {
@@ -71,7 +79,7 @@ $(document).ready(function(){
 		loop:true,
 		items: 1,
 		dots: false,
-		nav: true,		
+		nav: true,	
 	});
 
 	checkClasses();
@@ -85,7 +93,15 @@ $(document).ready(function(){
 		items: 3,
 		dots: false,
 		nav: true,
-		slideBy: 3
+		slideBy: 3,
+		responsive:{
+			0: {
+				items: 2
+			},
+			1200: {
+				items: 4
+			}
+		}
 	});
 	trendClasses();
 	$(".slide-trend-product").on('translated.owl.carousel', function(event) {
@@ -212,9 +228,6 @@ $(document).ready(function(){
 		window.location.href = location.protocol + "//" + document.domain;
 	});
 
-	//function search
-	search();
-
 });
 
 //Add class first item and last item
@@ -276,14 +289,6 @@ function updateCart(cart_product_id, value) {
             console.log(err);
         },
     });
-}
-
-
-function search(){
-	$('.btn-search').on('click', function(){
-		var res = $('.input-search').val();
-		console.log(res);
-	});
 }
 
 function relateClasses(){
