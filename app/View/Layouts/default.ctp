@@ -18,7 +18,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php echo $this->Html->charset(); ?>
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<title>
 		Vigodi
 	</title>

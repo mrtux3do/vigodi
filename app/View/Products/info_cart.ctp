@@ -16,9 +16,10 @@
 		<div class="col-lg-6">
 			<div class="info-addr">
 				<div class="form-addr" style="margin-top: 0">
-					<h2><?php echo $address['Address']['name'] . ' ' . $address['Address']['f_name'];?></h2>
-					<p>Địa chỉ: <?php echo $address['Address']['address']; ?></p>
-					<p>Điện thoại: <?php echo $address['Address']['phone']; ?></p>
+					<h2 id="info-name"><?php echo $address['Address']['name'] . ' ' . $address['Address']['f_name'];?></h2>
+					<p id="info-address"><?php echo $address['Address']['address']; ?></p>
+					<p id="info-phone"><?php echo $address['Address']['phone']; ?></p>
+					<p id="info-email"><?php echo $address['Address']['email']; ?></p>
 				</div>				
 			</div>
 		</div>

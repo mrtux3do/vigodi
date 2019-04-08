@@ -159,8 +159,17 @@ class AjaxController extends CommonController {
         $status = false;
         $user_id = $this->_user['id'];
         if (isset($this->request->data['cart_id'])) {
+            $name = isset($this->request->data['name']) ? $this->request->data['name'] : '';
+            $email = isset($this->request->data['email']) ? $this->request->data['email'] : '';
+            $address = isset($this->request->data['address']) ? $this->request->data['address'] : '';
+            $phone = isset($this->request->data['phone']) ? $this->request->data['phone'] : '';
+
             $data = array(
                 'cart_id' => $this->request->data['cart_id'],
+                'name' => $name,
+                'email' => $email,
+                'address' => $address,
+                'phone' => $phone, 
                 'created_at' => $now,
                 'user_id' => $user_id
             );
@@ -171,6 +180,56 @@ class AjaxController extends CommonController {
         
         return json_encode(array(
             'status' => $status
+        ));
+    }
+
+    public function updateCart() {
+        $now = date('Y/m/d H:i:s');
+        $status = false;
+
+        if (isset($this->request->data['cart_product_id']) && isset($this->request->data['number'])) {
+            $this->CartProduct->id = $this->request->data['cart_product_id'];
+            $this->CartProduct->save(array(
+                'number' => $this->request->data['number'],
+                'updated_date' => $now
+            ));
+
+            $carts = $this->__getCart();
+
+            $total = $carts['total'];
+            $cart_number = $carts['cart_number'];
+
+            $status = true;
+        }
+
+        return json_encode(array(
+            'status' => $status,
+            'total' => $total,
+            'cart_number' => $cart_number
+        ));
+    }
+
+    public function deleteCart() {
+        $status = true;
+
+        if (isset($this->request->data['cart_product_id'])) {
+            $id = $this->request->data['cart_product_id'];
+            try {
+                $this->CartProduct->delete($id);
+
+                $carts = $this->__getCart();
+
+                $total = $carts['total'];
+            } catch (Exception $e) {
+                $this->log($e->getMessage());
+
+                return false;
+            }
+        }
+
+        return json_encode(array(
+            'status' => $status,
+            'total' => $total
         ));
     }
 

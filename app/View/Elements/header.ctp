@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div id="content-header">
-				<div id="lang-mo">
+<!-- 				<div id="lang-mo">
 					<ul>
 						<li id="language"> 
 							<p class="eng"> EN </p>
@@ -10,36 +10,37 @@
 						</li>
 						<li> USD </li>
 					</ul>
-				</div>
+				</div> -->
 
 				<div id="menu-top" class="pull-right">
 					<ul>
-						<li>Help & Contact</li>
-						<li>Order Status</li>
+						<li>Hỗ Trợ</li>
 						<li id="myaccount">
-							<p><?php if(!empty($user)) {
-										echo $user['name'];
-									} else {echo "My Account";}
+							<p><?php if(!empty($infoUser)) {
+										echo $infoUser['name'] . ' ' . $infoUser['f_name'];
+									} else {echo "Đăng nhập/Đăng Ký";}
 							?></p>
 							<ul id="account">
 								<li> 
-									<?php echo $this->Html->link( 'Register', 
-										array(
-											'controller' => 'Users',
-											'action' => 'register',
-											'full_base' => true
-										)); 
+									<?php if(empty($infoUser)) {
+										echo $this->Html->link( 'Đăng Ký', 
+											array(
+												'controller' => 'Users',
+												'action' => 'register',
+												'full_base' => true
+											)); 
+										}
 									?>
 								</li>
 								<li> 
-									<a class="btn-popup"> <?php if(!empty($user)) {
+									<a class="btn-popup"> <?php if(!empty($infoUser)) {
 										echo $this->Html->link( 'Logout', 
 												array(
 													'controller' => 'Auth',
 													'action' => 'logout',
 													'full_base' => true
 												)); 									
-									} else {echo "Login";}
+									} else {echo "Đăng Nhập";}
 							?> </a>
 								</li>
 							</ul>
@@ -54,14 +55,14 @@
 	<div class="container">
 		<div class="row">
 		<div id="top-menu">
-			<div class="row">
+			<!-- <div class="row"> -->
 				<div id="logo" class="col-lg-2">
-					<div>Vigodi</div>
+					<a href="/"><div style="color: red">Vi<span style="color: green">Go</span>Di</div></a>
 				</div>
 
 				<div id="search" class="col-lg-7">
-					<form method="POST" action="/products/search">
-						<input class="input-search" type="text" name="search" placeholder="Search for products...">
+					<form method="GET" action="/products/search">
+						<input class="input-search" type="text" name="search" placeholder="Nhập để tìm kiếm...">
 						<button class="btn-search"></button>
 					</form>
 				</div>
@@ -71,14 +72,14 @@
 						<li id="compare"><span>0</span></li>
 						<li id="wishlist"><span>0</span></li>
 						<li id="cart">
-							<span><?php if (isset($cart)) { echo $cart; } else {echo 0;} ?></span>
+							<span id="cart-number"><?php if (isset($cart)) { echo $cart; } else {echo 0;} ?></span>
 						</li>
 					</ul>
 					<div class="cart-noti">
 						Giỏ hàng của bạn đang rỗng!
 					</div>
 				</div>
-			</div>
+			<!-- </div> -->
 		</div>
 		</div>
 	</div>
@@ -87,7 +88,7 @@
 	<div class="container">
 		<div class="row">
 		<div id="main-menu">
-			<div class="col-lg-3 col-md-3" style="position: unset;">
+			<div class="col-lg-3" style="position: unset;">
 				<div class="row">
 					<div id="sort-category">
 					<button>Danh mục sản phẩm</button>
@@ -95,7 +96,10 @@
 						<ul>
 							<?php if(isset($category)): ?>
 								<?php foreach($category as $data): ?>
-									<li> <?php echo $data['Category']['category_name'] ?> </li>
+									<a href="<?php echo $this->Html->url(array(
+														'controller' => 'products', 
+														'action' => 'listProduct', 
+														'?' => array('category_id' => $data['Category']['id'])))?>"><li> <?php echo $data['Category']['category_name'] ?> </li></a>
 								<?php endforeach; ?>
 							<?php endif; ?>
 						</ul>
@@ -103,18 +107,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-9 col-md-9" style="position: unset;">
+			<div class="col-lg-9 menu-normal" style="position: unset;">
 				<div class="row">
 					<ul class="drop-down">
-					<li>Trang Chủ</li>
+					<li><a href="/" style="text-decoration: none; color: #000">Trang Chủ</a></li>
 					<li id="menu-active" class="hbh">
 						Hàng Bách hóa
 						<div class="sub-menu-hbh">
 							<div id="menu-hbh">
-								<div>Cà phê</div>
-								<div>Nhàu Noni</div>
-								<div>Cao Atiso</div>
-								<div>Socola Marou</div>
+								<?php foreach($category as $data): ?>
+									<?php if($data['Category']['type'] == 1): ?>
+										<a href="<?php echo $this->Html->url(array(
+														'controller' => 'products', 
+														'action' => 'listProduct', 
+														'?' => array('category_id' => $data['Category']['id'])))?>"><div><?php echo $data['Category']['category_name'] ?></div></a>
+									<?php endif; ?>
+								<?php endforeach; ?>
 							</div>
 						</div>
 					</li>
@@ -122,11 +130,14 @@
 						hàng lưu niệm
 						<div class="sub-menu-hln">
 							<div id="menu-hln">
-								<div>Mây tre đan, Cói</div>
-								<div>Lụa tơ tằm</div>
-								<div>Túi, ví vải Handmade</div>
-								<div>Thú len đan móc bằng tay</div>
-								<div>Túi, ba lô, ví thổ cẩm</div>
+								<?php foreach($category as $data): ?>
+									<?php if($data['Category']['type'] == 2): ?>
+										<a href="<?php echo $this->Html->url(array(
+														'controller' => 'products', 
+														'action' => 'listProduct', 
+														'?' => array('category_id' => $data['Category']['id'])))?>"><div><?php echo $data['Category']['category_name'] ?></div></a>
+									<?php endif; ?>
+								<?php endforeach; ?>	
 							</div>
 						</div>					
 					</li>

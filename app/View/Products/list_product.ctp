@@ -4,7 +4,7 @@
 			<div id="breadcrumbs">
 				<ul>
 					<li><a href="/">Home</a></li>
-					<li>Socola Marou</li>
+					<li><?php echo $name_category['Category']['category_name'] ?></li>
 				</ul>
 			</div>
 		</div>
@@ -22,20 +22,27 @@
 					<div class="add-filter filter-hbh">
 						<a>Hàng Bách Hoá</a>
 						<ul class="sub-filter sub-hbh">
-							<li>cà phê</li>
-							<li>nhàu noni</li>
-							<li>cao atiso</li>
-							<li>socola marou</li>
+							<?php foreach($category as $data): ?>
+								<?php if($data['Category']['type'] == 1): ?>
+									<a href="<?php echo $this->Html->url(array(
+													'controller' => 'products', 
+													'action' => 'listProduct', 
+													'?' => array('category_id' => $data['Category']['id'])))?>"><li><?php echo $data['Category']['category_name'] ?></li></a>
+								<?php endif; ?>
+							<?php endforeach; ?>
 						</ul>
 					</div>
 					<div class="add-filter filter-hln">
 						<a>Hàng Lưu Niệm</a>
 						<ul class="sub-filter sub-hln">
-							<li>mây tre đan, cói</li>
-							<li>lụa tơ tằm</li>
-							<li>túi, ví vải handmade</li>
-							<li>thú len đan móc bằng tay</li>
-							<li>túi, balo, ví thổ cẩm</li>
+							<?php foreach($category as $data): ?>
+								<?php if($data['Category']['type'] == 2): ?>
+									<a href="<?php echo $this->Html->url(array(
+													'controller' => 'products', 
+													'action' => 'listProduct', 
+													'?' => array('category_id' => $data['Category']['id'])))?>"><li><?php echo $data['Category']['category_name'] ?></li></a>
+								<?php endif; ?>
+							<?php endforeach; ?>
 						</ul>
 					</div>					
 				</div>

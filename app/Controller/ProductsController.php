@@ -3,13 +3,13 @@
 App::uses('CommonController', 'Controller');
 
 class ProductsController extends CommonController {
-	public $uses = array('Product', 'Comment', 'Cart', 'Order', 'CartProduct', 'User', 'Address');
+	public $uses = array('Product', 'Comment', 'Cart', 'Order', 'CartProduct', 'User', 'Address', 'Category');
 	private $_user;
 	private $_cartId;
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('index', 'detail', 'listProduct', 'cart', 'address', 'infoCart', 'search');
+		$this->Auth->allow('index', 'detail', 'listProduct', 'cart', 'address', 'infoCart', 'search', 'newProduct');
 
 		$this->_user = $this->Auth->User();
 
@@ -26,6 +26,7 @@ class ProductsController extends CommonController {
 		$data = $this->Product->find('all');
 		$this->set('data', $data);
 		$this->set(compact('user', $this->_user));
+		$this->newProduct();
 	}
 
 	//Product detail
@@ -52,6 +53,17 @@ class ProductsController extends CommonController {
 
 	//List product
 	public function listProduct(){
+		$category_id = $this->request->query['category_id'];
+		$this->Paginator->settings = array(
+			'conditions' => array('Product.category_id' => $category_id),
+			'limit' => 16
+		);
+		$name_category = $this->Category->find('first', array(
+			'conditions' => array('Category.id' => $category_id),
+			'fields' => array('Category.category_name')
+		));
+		$data = $this->Paginator->paginate('Product');
+		$this->set(compact('data', 'name_category'));
 	}
 
 	//List product that want to buy
@@ -136,64 +148,25 @@ class ProductsController extends CommonController {
 	}
 
 	public function search(){
-		if($this->request->is('post')){
-			$keyword = $this->request->data['search'];
+		if($this->request->is('get')){
+			$keyword = $this->request->query['search'];
 			$this->Paginator->settings = array(
 				'conditions' => array ('Product.name LIKE' => '%' . $keyword . '%'),
-				'limit' => 4
+				'limit' => 16
 			);
 			$data = $this->Paginator->paginate('Product');
-			$this->set('data', $data);
+			$this->set(compact('data'));
 		}
 	}
 
-	private function __getCart() {
-		$products = array();
-		$cart_number = 0;
-		$total = 0;
-		$cart_id = '';
+	public function newProduct(){
+		$new_product = $this->Product->find('all', array(
+			'order' => array('id' => 'DESC'),
+			'limit' => 10
+		));
 
-		$cart = $this->Cart->find('first', array(
-			'conditions' => array(
-            	'Cart.user_id' => $this->_user['id']
-            ),
-            'order' => array(
-            	'Cart.id' => 'desc'
-            )
-        ));
-        $this->log($cart);
-        if (!empty($cart)) {
-        	$order = $this->Order->find('first', array(
-        		'conditions' => array('Order.cart_id' => $cart['Cart']['id']),
-				'order' => array('Order.id' => 'desc')        			
-            ));
-
-            if(empty($order)) {
-            	$cart_product = $this->CartProduct->find('all', array(
-            		'conditions' => array(
-            			'CartProduct.cart_id' => $cart['Cart']['id']
-            		)
-            	));
-
-            	foreach ($cart_product as $value) {
-            		$cart_number += $value['CartProduct']['number'];
-            		$value['Product']['number'] = $value['CartProduct']['number'];
-            		array_push($products, $value['Product']);
-            		$total += $value['CartProduct']['number'] * $value['Product']['sale_price'];
-            	}           	
-            }
-
-            $cart_id = $cart['Cart']['id'];
-        }	
-
-        $data = array(
-        	'products' => $products,
-        	'cart_number' => $cart_number,
-        	'total' => $total,
-        	'cart_id' => $cart_id
-        );
-
-        return $data;     
+		$this->log($new_product);
+		$this->set('new_product', $new_product);
+		$this->render('index');
 	}
-
 }
