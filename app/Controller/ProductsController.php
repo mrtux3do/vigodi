@@ -169,4 +169,35 @@ class ProductsController extends CommonController {
 		$this->set('new_product', $new_product);
 		$this->render('index');
 	}
+
+    //admin action
+    //
+    public function listProductAdmin() {
+        $this->layout = 'admin';
+
+        $products = $this->Product->find('all');
+
+        $this->set('products', $products);
+    }
+
+    public function addProduct() {
+        $this->layout = 'admin';
+
+    }
+
+    public function detailProduct() {
+        $this->layout = 'admin';
+
+        $id = $this->request->pass[0];
+        $product = $this->Product->findById($id);
+
+        $this->set("product", $product);
+        $this->set('commons', [
+            'breadcrumbs' => [
+                ['User', ['controller' => 'products', 'action' => 'detailProduct']],
+                ['Profile']
+            ],
+            'header' => ['Sản phẩm', 'Thông tin chi tiết']
+        ]);
+    }
 }
