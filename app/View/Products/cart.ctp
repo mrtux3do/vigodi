@@ -64,11 +64,11 @@
 			</div>
 			<div class="list-info-price">
 				<span>Tạm tính:</span>
-				<strong class="cart-total"><?php echo $total;?>.000VND</strong>
+				<strong class="cart-total"><?php echo $total;?> VND</strong>
 			</div>
 			<div class="amount-info-price">
 				<span>Thành tiền:</span>
-				<strong class="cart-total"><?php echo $total;?>.000VND</strong>
+				<strong class="cart-total"><?php echo $total;?> VND</strong>
 				<div>(Đã bao gồm VAT)</div>
 			</div>
 			<a href="/products/address?cart_id=<?php echo $cart_id;?>"> <button class="btn-checkout">

@@ -29,28 +29,62 @@
 					<div class="reg-form">
 						<form method="POST", action="">
 							<div class="form-group">
-								<label class="required">First Name</label>
-								<input type="text" name="first-name" required placeholder="First name">
+								<label class="required">First Name*</label>
+								<?php if (isset($tmpInfo['f_name']) && !empty($tmpInfo['f_name'])) {
+									echo "<input type='text' name='first-name' value='". $tmpInfo['f_name'] ."'>";
+								} else {
+									echo '<input type="text" name="first-name" required placeholder="First name">';
+								}?>								
+								<div class="text-danger alert-message" id="u-m-messageForName"><?php if (isset($message1)) {
+			                        echo $message1;
+			                    } ?></div>
 							</div>
 							<div class="form-group">
-								<label class="required">Last Name</label>
-								<input type="text" name="last-name" required placeholder="Last name">
+								<label class="required">Last Name*</label>
+								<?php if (isset($tmpInfo['name']) && !empty($tmpInfo['name'])) {
+									echo "<input type='text' name='last-name' value='". $tmpInfo['name'] ."'>";
+								} else {
+									echo '<input type="text" name="last-name" required placeholder="Last name">';
+								}?>	
+								<div class="text-danger alert-message" id="u-m-messageForName"><?php if (isset($message2)) {
+			                        echo $message2;
+			                    } ?></div>
 							</div>
 							<div class="form-group">
-								<label class="required">Email</label>
-								<input type="e-mail" name="e-mail" required placeholder="Email">
+								<label class="required">Email*</label>
+								<?php if (isset($tmpInfo['email']) && !empty($tmpInfo['f_name'])) {
+									echo "<input type='text' name='e-mail' value='". $tmpInfo['email'] ."'>";
+								} else {
+									echo '<input type="text" name="e-mail" required placeholder="E-mail">';
+								}?>	
+								<div class="text-danger alert-message" id="u-m-messageForName"><?php if (isset($message3)) {
+			                        echo $message3;
+			                    } ?></div>
 							</div>
 							<div class="form-group">
-								<label class="required">Phone Number</label>
-								<input type="number" name="phone-number" required placeholder="Phone Number">
+								<label class="required">Phone Number*</label>
+								<?php if (isset($tmpInfo['phone']) && !empty($tmpInfo['phone'])) {
+									echo "<input type='text' name='phone-number' value='". $tmpInfo['phone'] ."'>";
+								} else {
+									echo '<input type="text" name="phone-number" required placeholder="Phone number">';
+								}?>	
+								<div class="text-danger alert-message" id="u-m-messageForName"><?php if (isset($message4)) {
+			                        echo $message4;
+			                    } ?></div>
 							</div>
 							<div class="form-group">
-								<label class="required">Password</label>
-								<input type="password" name="password" required placeholder="Phone Number">
+								<label class="required">Password*</label>
+								<input type="password" name="password" required placeholder="Password">
+								<div class="text-danger alert-message" id="u-m-messageForName"><?php if (isset($message5)) {
+			                        echo $message5;
+			                    } ?></div>
 							</div>
 							<div class="form-group">
-								<label class="required">Re-Password</label>
-								<input type="password" name="re-password" required placeholder="Phone Number">
+								<label class="required">Re-Password*</label>
+								<input type="password" name="re-password" required placeholder="Re-Password">
+								<div class="text-danger alert-message" id="u-m-messageForName"><?php if (isset($message6)) {
+			                        echo $message6;
+			                    } ?></div>
 							</div>
 							<div class="form-group">
 								<label class="required">Gender</label>

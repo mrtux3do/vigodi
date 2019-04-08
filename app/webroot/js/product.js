@@ -52,7 +52,6 @@ $(document).ready(function(){
                 console.log(response)
                 if (response.status == true) {
                     addToCart();
-                    location.href = pathname + "/products/cart";
                 }
             },
             error: function(xhr, status, err) {
