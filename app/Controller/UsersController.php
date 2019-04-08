@@ -15,7 +15,7 @@ class UsersController extends CommonController {
         $this->Auth->allow('index');
         $this->Auth->allow('add');
         $this->Auth->allow('profile');
-        $this->Auth->allow('edit');
+        $this->Auth->allow('edit', 'delete');
 
         $this->__role = $this->Role->find('all');
         foreach ($this->__role as &$value) {
@@ -180,27 +180,42 @@ class UsersController extends CommonController {
     public function add() {
         $this->layout = 'admin';
 
+        if ($this->request->is(array('post', 'put'))) {
+            $this->User->create();
+            $data = $this->request->data;
+            $data['created_at'] = date("Y-m-d H:i:s");
+
+            if ($this->User->save($data)) {
+                $result['success'] = true;
+                return $this->redirect('index');
+            } else {
+                $result['success'] = false;
+                return false;
+            }
+        }
+
         $this->set('commons', [
             'breadcrumbs' => [
                 ['User', ['controller' => 'users', 'action' => 'add']],
                 ['List']
             ],
-            'header' => ['User', 'Add new user']
+            'header' => ['Khách hàng', 'Thêm mới']
         ]);
     }
 
     public function profile() {
         $this->layout = 'admin';
 
-//        $uid = $this->request->params['uid'];
-//        $user = $this->User->getUserInfo($uid);
-//        $this->set("user", $user);
+        $id = $this->request->pass[0];
+        $user = $this->User->findById($id);
+
+        $this->set("user", $user);
         $this->set('commons', [
             'breadcrumbs' => [
                 ['User', ['controller' => 'users', 'action' => 'profile']],
                 ['Profile']
             ],
-            'header' => ['User', 'profile']
+            'header' => ['Khách hàng', 'Thông tin cá nhân']
         ]);
     }
 
@@ -208,81 +223,85 @@ class UsersController extends CommonController {
         $this->layout = 'admin';
 
         //get user id
-//        $id = $this->request->params['id'];
-//        if (!$id) {
-//            throw new NotFoundException(__('Invalid user'));
-//        }
-//        $user = $this->User->findById($id);
-//
-//        if (!$user) {
-//            throw new NotFoundException(__('Invalid user'));
-//        }
-//        if ($this->request->is(array('post', 'put'))) {
-//            $this->User->id = $id;
-//            $data = $this->request->data;
-//            $data['contract_id'] = $user['User']['contract_id'];
-//            $data['created_at'] = $user['User']['created_at'];
-//            $data['created_uid'] = $user['User']['created_uid'];
-//            $data['updated_at'] = date('Y-m-d H:i:s', time());
-//            $data['updated_uid'] = $this->Auth->user('id');
-//            $data['email'] = $user['User']['email'];
-//            //Uplodate user's image
-//            $fileInfo = $_FILES['img-profile'];
-//            if (!empty($fileInfo['name'])) {
-//                $absolutePath = 'img/avatars' . DS . time() . "_" . $fileInfo['name'];
-//                $path = WWW_ROOT . $absolutePath;
-//                move_uploaded_file($fileInfo['tmp_name'], $path);
-//                $fileName = "/" . $absolutePath;
-//            } else {
-//                $fileName = $user['User']['img-profile'];
-//            }
-//
-//            $data['img-profile'] = $fileName;
-//
-//            //Check whether password is change or not
-//            if ($this->request->data('old_pass') != '') {
-//                $passwordHasher = new BlowfishPasswordHasher();
-//                $old_pass = $this->request->data('old_pass');
-//                $new_pass = $passwordHasher->hash($this->request->data('new_pass'));
-//                $chk_pass = $passwordHasher->check($old_pass, $user['User']['password']);
-//                // var_dump($chk_pass);
-//                if ($chk_pass == true) {
-//                    $data['password'] = $new_pass;
-//                    // pr($data['password']);exit();
-//                } else {
-//                    $this->Flash->error('Wrong password!', array(
-//                        'key' => 'error_msg'
-//                    ));
-//                    return $this->redirect($this->referer());
-//                }
-//            } else {
-//                $data['password'] = $user['User']['password'];
-//            }
-//            // pr($data);exit;
-//            //Save data into db
-//            if ($this->User->save($data)) {
-//                $this->Flash->success('Updated profile successfully !', array(
-//                    'key' => 'success_msg'
-//                ));
-//                return $this->redirect($this->referer());
-//            }
-//        }
-//        if (!$this->request->data) {
-//            $this->request->data = $user;
-//        }
-//        $this->set('certificates', $this->Certificate->getCertificates());
-//        $this->set('contracts', $this->Contract->getContracts());
-//        $this->set('roles', $this->Role->getRoles());
-//        $this->set('status', $this->Status->getStatus());
-//        $this->set('positions', $this->Position->getPositions());
-//        $this->set('data', $user);
+        $id = $this->request->pass[0];
+
+        if (!$id) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        $user = $this->User->findById($id);
+
+        if (!$user) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        if ($this->request->is(array('post', 'put'))) {
+            $this->User->id = $id;
+            $data = $this->request->data;
+            $data['hashed_email'] = $user['User']['hashed_email'];
+            $data['re-password'] = $user['User']['re-password'];
+            $data['created_at'] = $user['User']['created_at'];
+            $data['user_role_id'] = $user['User']['user_role_id'];
+            $data['updated_at'] = date('Y-m-d H:i:s', time());
+            $data['updated_uid'] = $this->Auth->user('id');
+            $data['dob'] = $user['User']['dob'];
+
+            //Check whether password is change or not
+            if ($this->request->data('old_pass') != '') {
+                $passwordHasher = new BlowfishPasswordHasher();
+                $old_pass = $this->request->data('old_pass');
+                $new_pass = $passwordHasher->hash($this->request->data('new_pass'));
+                $chk_pass = $passwordHasher->check($old_pass, $user['User']['password']);
+
+                if ($chk_pass == true) {
+                    $data['password'] = $new_pass;
+                } else {
+                    $this->Flash->error('Wrong password!', array(
+                        'key' => 'error_msg'
+                    ));
+                    return $this->redirect($this->referer());
+                }
+            } else {
+                $data['password'] = $user['User']['password'];
+            }
+
+            //Save data into db
+            if ($this->User->save($data)) {
+                $this->Session->setFlash('Something 111111111 bad.', 'success', array(), 'bad');
+                return $this->redirect('index');
+            }
+        }
+        if (!$this->request->data) {
+            $this->request->data = $user;
+        }
+
+        $this->set('user', $user);
         $this->set('commons', [
             'breadcrumbs' => [
                 ['User', ['controller' => 'users', 'action' => 'index']],
                 ['Edit']
             ],
-            'header' => ['User', 'edit user information']
+            'header' => ['Khách hàng', 'Chỉnh sửa thông tin khách hàng']
         ]);
+    }
+
+    public function delete() {
+        $this->layout = 'admin';
+
+        $this->layout = false;
+        $this->autoRender = false;
+
+        //get user id
+        $id = $this->request->pass[0];
+
+        if (!$id) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+
+
+        if ($this->User->delete($id)) {
+            return $this->redirect('index');
+        } else {
+            return false;
+        }
     }
 
 }
