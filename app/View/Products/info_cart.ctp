@@ -16,9 +16,10 @@
 		<div class="col-lg-6">
 			<div class="info-addr">
 				<div class="form-addr" style="margin-top: 0">
-					<h2>Phạm Minh Tuấn</h2>
-					<p>Địa chỉ: 241 Xuân Thuỷ, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội</p>
-					<p>Điện thoại: 0977932377</p>
+					<h2 id="info-name"><?php echo $address['Address']['name'] . ' ' . $address['Address']['f_name'];?></h2>
+					<p id="info-address"><?php echo $address['Address']['address']; ?></p>
+					<p id="info-phone"><?php echo $address['Address']['phone']; ?></p>
+					<p id="info-email"><?php echo $address['Address']['email']; ?></p>
 				</div>				
 			</div>
 		</div>
@@ -29,11 +30,11 @@
 					</div>
 					<div class="list-info-price">
 						<span>Tạm tính:</span>
-						<strong>30.000VND</strong>
+						<strong><?php echo $total;?>.000VND</strong>
 					</div>
 					<div class="amount-info-price">
 						<span>Thành tiền:</span>
-						<strong>30.000VND</strong>
+						<strong><?php echo $total;?>.000VND</strong>
 						<div>(Đã bao gồm VAT)</div>
 					</div>
 				</div>

@@ -17,7 +17,13 @@ class UsersController extends CommonController {
         $this->Auth->allow('profile');
         $this->Auth->allow('edit');
 
-		$this->__role = $this->Role->find('all');
+        $this->__role = $this->Role->find('all');
+        foreach ($this->__role as &$value) {
+            $roleName = $this->_getRoleName($value['Role']['id']);
+            $value['Role']['roleName'] = $roleName;
+        }
+
+        $this->set('role', $this->__role);
 	}
 
 	public function register(){
@@ -153,14 +159,21 @@ class UsersController extends CommonController {
 	}
 
 	public function index(){
-	    $this->layout = 'admin';
-
+        $this->layout = 'admin';
+        
+        $data = $this->User->find('all');
+        foreach($data as $val) {
+            $val["User"]["roleName"] = $this->_getRoleName($val["User"]["user_role_id"]);
+            $users[] = $val;
+        }
+        $this->set('users', $users);
         $this->set('commons', [
             'breadcrumbs' => [
                 ['User', ['controller' => 'users', 'action' => 'index']],
                 ['List']
             ],
-            'header' => ['User', 'member list']
+            'header' => ['User', 'member list'],
+            'users' => $users
         ]);
     }
 

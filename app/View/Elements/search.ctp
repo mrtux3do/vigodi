@@ -2,7 +2,6 @@
 	<div class="category-img">
 		<img src="<?php echo $this->webroot ?>img/banner-category.jpg">
 	</div>
-	<h2><?php echo $name_category['Category']['category_name'] ?></h2>
 </div>
 
 <div class="custom-category">

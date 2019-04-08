@@ -4,9 +4,11 @@
 			<div class="col-md-4 col-footer">
 				<div class="footer-title">Liên hệ</div>
 				<div class="footer-content">
-					<div class="info-company">Công Ty Trách Nhiệm Hữu Hạn Vigodi - Vigodi.vn</div>
-					<div class="address">Số 11 - Đường XXX - Quận XXX - Hà Nội</div>
-					<div class="phone">024.123.456</div>
+					<div class="info-company">Công ty Cổ phần Vigodi <br> <h1 style="line-height: 40px"> Vietnam Goods Distribution - Vigodi.vn </h1></div>
+					<div class="address">Trụ sở: số 70 - Đường Lâm Tiên - Đông Anh - Hà Nội - Việt Nam</div>
+					<div class="address">Chi nhánh: Đội 4 - Tân Trại - Phú Cường - Sóc Sơn - Hà Nội - Việt Nam</div>
+					<div class="phone">0839.885.188</div>
+					<div class="email-info">vigodi.airport@gmail.com</div>
 				</div>
 			</div>
 			<div class="col-md-4 col-footer">
@@ -19,7 +21,7 @@
 			</div>
 			<div class="col-md-4 col-footer">
 				<div class="footer-title">Google Map</div>
-				<div class="footer-content"></div>
+				<div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=70%20L%C3%A2m%20Ti%C3%AAn%20%C4%90%C3%B4ng%20Anh%20H%C3%A0%20N%E1%BB%99i&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><style>.gmap_canvas {overflow:hidden;background:none!important;height:400px;width:600px;}</style></div>
 			</div>				
 		</div>
 	</div>

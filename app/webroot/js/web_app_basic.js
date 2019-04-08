@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	var pathname = window.location.protocol + "//" + window.location.host;
 
 	/* start show noti */
 	$("body").click(function(){
@@ -7,7 +8,13 @@ $(document).ready(function(){
 
 	$("#cart").click(function(event) {
 		event.stopPropagation();
-		$('.cart-noti').show();
+		var no = $("#cart span").html();
+		console.log(no);
+		if (no == 0) {
+			$('.cart-noti').show();
+		} else {
+			location.href = pathname + "/products/cart";
+		}		
 	});
 	/* end show noti */
 
@@ -30,10 +37,18 @@ $(document).ready(function(){
 	$(".relate-product-slide").owlCarousel({
 		loop:true,
 		items: 4,
-		margin: 25,
+		// margin: 25,
 		dots: false,
 		nav: true,
-		slideBy: 4
+		slideBy: 4,
+		responsive:{
+			0: {
+				items: 2
+			},
+			1200:{
+				items: 4
+			}
+		}
 	});
 	relateClasses()
 	$(".relate-product-slide").on('translated.owl.carousel', function(event) {
@@ -64,7 +79,7 @@ $(document).ready(function(){
 		loop:true,
 		items: 1,
 		dots: false,
-		nav: true,		
+		nav: true,	
 	});
 
 	checkClasses();
@@ -78,7 +93,15 @@ $(document).ready(function(){
 		items: 3,
 		dots: false,
 		nav: true,
-		slideBy: 3
+		slideBy: 3,
+		responsive:{
+			0: {
+				items: 2
+			},
+			1200: {
+				items: 4
+			}
+		}
 	});
 	trendClasses();
 	$(".slide-trend-product").on('translated.owl.carousel', function(event) {
@@ -136,6 +159,52 @@ $(document).ready(function(){
 			$('#input-quantity').val(quantity);			
 		}
 	});
+	//list cart
+	$('.cart-minus').on('click', function(){
+		var quantity = $(this).next().val();
+		var cart_product_id = $(".cart-minus").parents(".quantity-product").attr("cart_product_id");
+
+		if(quantity >= 2){
+			quantity = parseInt(quantity) - 1;
+			$(this).next().val(quantity);
+			updateCart(cart_product_id, quantity);			
+		}
+	});
+
+	//list cart
+	$('.cart-plus').on('click', function(){
+		var quantity = $(this).prev().val();
+		var cart_product_id = $(".cart-plus").parents(".quantity-product").attr("cart_product_id");
+		quantity = parseInt(quantity) + 1;
+		$(this).prev().val(quantity);
+		updateCart(cart_product_id, quantity);			
+	});
+
+	//delete cart
+	$('.btn-del-cart').on('click', function(){
+		var cart_product_id = $(this).parents(".quantity-product").attr("cart_product_id");
+
+		$.ajax({
+	        method: 'POST',
+	        url: pathname + '/Ajax/deleteCart/',
+	        dataType: 'json',
+	        data: {
+	            cart_product_id: cart_product_id,
+	            },
+	        success: function(response) {
+	            console.log(response)
+	            if (response.status == true) {       
+	            	$(".cart-total").text(response.total);      
+	                location.href = pathname + "/products/cart";
+	            }
+	        },
+	        error: function(xhr, status, err) {
+	            console.log(xhr);
+	            console.log(status);
+	            console.log(err);
+	        },
+	    });
+	})
 
 	$('.filter-hbh').on('click', function(){
 		$(".sub-hbh").show();			
@@ -158,9 +227,6 @@ $(document).ready(function(){
 	$('.btn-back').on('click', function(){
 		window.location.href = location.protocol + "//" + document.domain;
 	});
-
-	//function search
-	search();
 
 });
 
@@ -199,12 +265,30 @@ function trendClasses(){
 	});
 }
 
+function updateCart(cart_product_id, value) {
+	var pathname = window.location.protocol + "//" + window.location.host;
 
-function search(){
-	$('.btn-search').on('click', function(){
-		var res = $('.input-search').val();
-		console.log(res);
-	});
+	$.ajax({
+        method: 'POST',
+        url: pathname + '/Ajax/updateCart/',
+        dataType: 'json',
+        data: {
+            cart_product_id: cart_product_id,
+            number: value
+            },
+        success: function(response) {
+            console.log(response)
+            if (response.status == true) {  
+            	$("#cart-number").text(response.cart_number);             
+                $(".cart-total").text(response.total);
+            }
+        },
+        error: function(xhr, status, err) {
+            console.log(xhr);
+            console.log(status);
+            console.log(err);
+        },
+    });
 }
 
 function relateClasses(){
