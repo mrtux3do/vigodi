@@ -24,7 +24,10 @@
 							<li>cà phê</li>
 							<li>nhàu noni</li>
 							<li>cao atiso</li>
-							<li>socola marou</li>
+							<a href="<?php echo $this->Html->url(array(
+													'controller' => 'products', 
+													'action' => 'listProduct', 
+													'?' => array('category_id' => 1)))?>"><li>socola marou</li></a>
 						</ul>
 					</div>
 					<div class="add-filter filter-hln">
@@ -34,7 +37,10 @@
 							<li>lụa tơ tằm</li>
 							<li>túi, ví vải handmade</li>
 							<li>thú len đan móc bằng tay</li>
-							<li>túi, balo, ví thổ cẩm</li>
+							<a href="<?php echo $this->Html->url(array(
+													'controller' => 'products', 
+													'action' => 'listProduct', 
+													'?' => array('category_id' => 2)))?>"><li>túi, balo, ví thổ cẩm</li></a>
 						</ul>
 					</div>					
 				</div>
@@ -53,7 +59,7 @@
 		</div>
 		<div class="col-lg-9">
 			<?php if(isset($data)): ?>
-				<?php echo $this->element('list_product', array('data', $data)); ?>
+				<?php echo $this->element('search'); ?>
 			<?php endif; ?>
 		</div>
 	</div>
