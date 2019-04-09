@@ -44,12 +44,46 @@ class CommonController extends AppController {
 
         if ($this->Auth->user()) {
         	$this->_user = $this->Auth->User();
+            if ($this->Auth->user('user_role_id') == 2) {
+                $this->Auth->allow();
+            } elseif ($this->Auth->user('user_role_id') == 1) {
+                $this->Auth->allow(array(
+                    'controller' => 'Products',
+                    'action' => 'cart', 'address', 'infoCart'
+                ));
+            } 
 
-        	$this->Auth->allow();
+            $this->set('infoUser', $this->Auth->user());        	
+        }        
+	}
+
+    /**
+     * isAuthorized
+     *
+     * @param mixed $user the unique parameter
+     * @return bool
+     */
+    public function isAuthorized($user) {
+        if (isset($user['user_role_id'])) {
+            if ($user['user_role_id'] == 2) {
+                // Admin will be able to access any URL in the site when logged-in
+                return true;
+            } elseif ($user['user_role_id'] == 1) {
+                //return default URL if access any deny URL
+                $this->redirect(array('controller' => 'Products', 'action' => 'index'));
+
+                return false;
+            } else {
+                //delete all Session & Cookie
+                $this->Session->destroy();
+                $this->Cookie->destroy();
+
+                return false;
+            }
         }
 
-        $this->set('infoUser', $this->Auth->user());
-	}
+        return false;
+    }
 
 	protected function _getRoleName($roleId) {
         $roleName = "";

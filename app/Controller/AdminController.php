@@ -9,7 +9,7 @@ class AdminController extends CommonController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('index', 'detail', 'listCart', 'deleteOrder', 'detailOrder', 'editOrder');
+        // $this->Auth->allow('index', 'detail', 'listCart', 'deleteOrder', 'detailOrder', 'editOrder');
 
         $this->_user = $this->Auth->User();
     }
