@@ -15,7 +15,7 @@
 				<div id="menu-top" class="pull-right">
 					<ul>
 						<li>Hỗ Trợ</li>
-						<li id="myaccount">
+						<li id="myaccount" value="<?php if(!empty($infoUser)) echo 1; ?>">
 							<p><?php if(!empty($infoUser)) {
 										echo $infoUser['name'] . ' ' . $infoUser['f_name'];
 									} else {echo "Đăng nhập/Đăng Ký";}
