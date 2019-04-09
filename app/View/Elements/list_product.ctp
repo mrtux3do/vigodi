@@ -51,8 +51,12 @@
 							<div class="star star-on"></div>
 						</div>
 						<div class="product-price">
-							<span class="old-price"><?php echo "VNĐ".$val['Product']['price'] ?></span>
-							<span class="sale-price"><?php echo "VNĐ".$val['Product']['price'] ?></span>
+							<?php if(isset($user)) {
+								echo "<span class='old-price'>VNĐ".$val['Product']['price']."</span>";
+								echo "<span class='sale-price'>VNĐ".$val['Product']['sale_price']."</span>";
+							} else {
+								echo "<span class='sale-price'>VNĐ".$val['Product']['price']."</span>";
+							}?>	
 						</div>
 					</div>
 				</div>

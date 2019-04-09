@@ -313,15 +313,13 @@
 													<div class="star star-on"></div>
 													<div class="star star-on"></div>
 												</div>
-												<div class="product-price">
-													<!-- <span class="old-price"><?php //echo "VNĐ".$val['Product']['price'] ?></span> -->								
-													<span class="sale-price">
-														<?php if(isset($user)) {
-															echo "VNĐ".$val['Product']['sale_price'];
+												<div class="product-price">															
+													<?php if(isset($user)) {
+															echo "<span class='old-price'>VNĐ".$val['Product']['price']."</span>";
+															echo "<span class='sale-price'>VNĐ".$val['Product']['sale_price']."</span>";
 														} else {
-															echo "VNĐ".$val['Product']['price'];
-														}?>
-													</span>
+															echo "<span class='sale-price'>VNĐ".$val['Product']['price']."</span>";
+													}?>						
 												</div>
 											</div>
 										</div>
@@ -384,14 +382,12 @@
 															<div class="star star-on"></div>
 														</div>
 														<div class="product-price">
-															<!-- <span class="old-price"><?php echo "VNĐ".$val['Product']['price'] ?></span> -->
-															<span class="sale-price">
-																<?php if(isset($user)) {
-																	echo "VNĐ".$val['Product']['sale_price'];
+															<?php if(isset($user)) {
+																	echo "<span class='old-price'>VNĐ".$val['Product']['price']."</span>";
+																	echo "<span class='sale-price'>VNĐ".$val['Product']['sale_price']."</span>";
 																} else {
-																	echo "VNĐ".$val['Product']['price'];
-																}?>
-															</span>
+																	echo "<span class='sale-price'>VNĐ".$val['Product']['price']."</span>";
+															}?>	
 														</div>
 													</div>
 <!-- 													<ul class="add-to-links">
@@ -441,15 +437,13 @@
 															<div class="star star-on"></div>
 															<div class="star star-on"></div>
 														</div>
-														<div class="product-price">
-															<!-- <span class="old-price"><?php echo "VNĐ".$val['Product']['price'] ?></span> -->
-															<span class="sale-price">
-																<?php if(isset($user)) {
-																	echo "VNĐ".$val['Product']['sale_price'];
+														<div class="product-price">												
+															<?php if(isset($user)) {
+																	echo "<span class='old-price'>VNĐ".$val['Product']['price']."</span>";
+																	echo "<span class='sale-price'>VNĐ".$val['Product']['sale_price']."</span>";
 																} else {
-																	echo "VNĐ".$val['Product']['price'];
-																}?>
-															</span>
+																	echo "<span class='sale-price'>VNĐ".$val['Product']['price']."</span>";
+															}?>	
 														</div>
 													</div>
 <!-- 													<ul class="add-to-links">
@@ -508,8 +502,12 @@
 																	'?' => array('product_id' => $res['Product']['id'])))?>"><?php echo $res['Product']['name'] ?></a>
 													</h1>
 													<div class="product-price">
-														<span class="old-price"><?php echo "VNĐ".$res['Product']['price'] ?></span>
-														<span class="sale-price"><?php echo "VNĐ".$res['Product']['price'] ?></span>
+														<?php if(isset($user)) {
+															echo "<span class='old-price'>VNĐ".$res['Product']['price']."</span>";
+															echo "<span class='sale-price'>VNĐ".$res['Product']['sale_price']."</span>";
+														} else {
+															echo "<span class='sale-price'>VNĐ".$res['Product']['price']."</span>";
+														}?>	
 													</div>
 												</div>
 											</div>

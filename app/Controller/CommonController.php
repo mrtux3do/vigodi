@@ -6,7 +6,7 @@ App::uses('CakeEmail', 'Network/Email');
 App::import('Vendor', 'Package',array('file' => 'vendor/autoload.php'));
 
 class CommonController extends AppController {
-	public $uses = array('Product', 'Comment', 'Cart', 'Order', 'CartProduct', 'User', 'Address');
+	public $uses = array('Product', 'Comment', 'Cart', 'Order', 'CartProduct', 'User', 'Address', 'Category');
 	private $_user;
 
 	public $components = [
