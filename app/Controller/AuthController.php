@@ -9,7 +9,7 @@ class AuthController extends CommonController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('set_password');
+		$this->Auth->allow('logout');
 	}
 
 	public function login() {

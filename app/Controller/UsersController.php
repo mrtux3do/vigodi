@@ -12,10 +12,6 @@ class UsersController extends CommonController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('register');
-        $this->Auth->allow('index');
-        $this->Auth->allow('add');
-        $this->Auth->allow('profile');
-        $this->Auth->allow('edit', 'delete');
 
         $this->__role = $this->Role->find('all');
         foreach ($this->__role as &$value) {
@@ -155,7 +151,7 @@ class UsersController extends CommonController {
             }
         }
 	}
-
+/*------------------admin----------------*/
 	public function index(){
         $this->layout = 'admin';
         
