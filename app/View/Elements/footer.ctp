@@ -21,7 +21,7 @@
 			</div>
 			<div class="col-md-4 col-footer">
 				<div class="footer-title">Google Map</div>
-				<div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=70%20L%C3%A2m%20Ti%C3%AAn%20%C4%90%C3%B4ng%20Anh%20H%C3%A0%20N%E1%BB%99i&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><style>.gmap_canvas {overflow:hidden;background:none!important;height:400px;width:600px;}</style></div>
+				<div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=70%20L%C3%A2m%20Ti%C3%AAn%20%C4%90%C3%B4ng%20Anh%20H%C3%A0%20N%E1%BB%99i&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><style>.gmap_canvas {overflow:hidden;background:none!important;height:400px;width:100%;}</style></div>
 			</div>				
 		</div>
 	</div>

@@ -91,7 +91,7 @@
 							<div class="product-deal">
 								<div class="img-product-deal">
 									<a href="#">
-										<img src="<?php echo $this->webroot ?>img/headphone.jpg">
+										<img src="<?php //echo $this->webroot ?>img/headphone.jpg">
 									</a>
 									<div class="product-flag">
 										<div class="discount-percent-tag"> 20% </div>
@@ -176,7 +176,7 @@
 							<div class="item-product">
 								<div class="img-item-product">
 									<a href="#">
-										<img src="<?php echo $this->webroot; ?>img/ear-headphones.jpg">
+										<img src="<?php //echo $this->webroot; ?>img/ear-headphones.jpg">
 									</a>
 									<div class="product-flag">
 										<div class="discount-percent-tag"> 20% </div>
@@ -202,7 +202,7 @@
 							<div class="item-product">
 								<div class="img-item-product">
 									<a href="#">
-										<img src="<?php echo $this->webroot; ?>img/headphone.jpg">
+										<img src="<?php //echo $this->webroot; ?>img/headphone.jpg">
 									</a>
 									<div class="product-flag">
 										<div class="discount-percent-tag"> 20% </div>
@@ -228,7 +228,7 @@
 							<div class="item-product">
 								<div class="img-item-product">
 									<a href="#">
-										<img src="<?php echo $this->webroot; ?>img/playstation.jpg">
+										<img src="<?php //echo $this->webroot; ?>img/playstation.jpg">
 									</a>
 									<div class="product-flag">
 										<div class="discount-percent-tag"> 20% </div>
@@ -254,7 +254,7 @@
 							<div class="item-product">
 								<div class="img-item-product">
 									<a href="#">
-										<img src="<?php echo $this->webroot; ?>img/tv-smart.jpg">
+										<img src="<?php //echo $this->webroot; ?>img/tv-smart.jpg">
 									</a>
 									<div class="product-flag">
 										<div class="discount-percent-tag"> 20% </div>
@@ -294,7 +294,7 @@
 									<?php if($val['Product']['category_id'] == 2): ?>
 										<div class="item-common-product">
 											<div class="img-common-product">
-												<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>">
+												<a href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>">
 													<img src="<?php echo $this->webroot.$val['Product']['image'] ?>">
 												</a>
 												<div class="product-flag">
@@ -304,7 +304,7 @@
 											</div>
 											<div class="desc-item-product">
 												<h1>
-													<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>"><?php echo $val['Product']['name'] ?></a>
+													<a href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>"><?php echo $val['Product']['name'] ?></a>
 												</h1>
 												<div class="rate-product">
 													<div class="star star-on"></div>
@@ -361,7 +361,7 @@
 											<?php if($val['Product']['type'] == 'SINGLE ORIGINS'): ?>
 												<div class="item-trend-product">
 													<div class="img-trend-product">
-														<a target="_blank" href="<?php echo $this->Html->url(array(
+														<a href="<?php echo $this->Html->url(array(
 															'controller' => 'products', 
 															'action' => 'detail', 
 															'?' => array('product_id' => $val['Product']['id'])))?>">
@@ -374,7 +374,7 @@
 													</div>
 													<div class="desc-item-product">
 														<h1>
-															<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>"><?php echo $val['Product']['name'] ?></a>
+															<a href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>"><?php echo $val['Product']['name'] ?></a>
 														</h1>
 														<div class="rate-product">
 															<div class="star star-on"></div>
@@ -419,7 +419,7 @@
 											<?php if($val['Product']['type'] == 'ORIGIN PLUS'): ?>
 												<div class="item-trend-product">
 													<div class="img-trend-product">
-														<a target="_blank" href="<?php echo $this->Html->url(array(
+														<a href="<?php echo $this->Html->url(array(
 															'controller' => 'products', 
 															'action' => 'detail', 
 															'?' => array('product_id' => $val['Product']['id'])))?>">
@@ -432,7 +432,7 @@
 													</div>
 													<div class="desc-item-product">
 														<h1>
-															<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail',$val['Product']['id']))?>"><?php echo $val['Product']['name'] ?></a>
+															<a href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail',$val['Product']['id']))?>"><?php echo $val['Product']['name'] ?></a>
 														</h1>
 														<div class="rate-product">
 															<div class="star star-on"></div>

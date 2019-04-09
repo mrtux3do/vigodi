@@ -110,7 +110,7 @@
 			<div class="col-lg-9 menu-normal" style="position: unset;">
 				<div class="row">
 					<ul class="drop-down">
-					<li><a href="/" style="text-decoration: none; color: #000">Trang Chủ</a></li>
+					<li><a href="/" style="text-decoration: none; color: #000; font-size: 15px">Trang Chủ</a></li>
 					<li id="menu-active" class="hbh">
 						Hàng Bách hóa
 						<div class="sub-menu-hbh">
