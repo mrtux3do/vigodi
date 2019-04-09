@@ -32,7 +32,7 @@
 			<div class="product-grid item col-lg-3">
 				<div class="item-common-product">
 					<div class="img-common-product">
-						<a target="_blank" href="<?php echo $this->Html->url(array(
+						<a href="<?php echo $this->Html->url(array(
 															'controller' => 'products', 
 															'action' => 'detail', 
 															'?' => array('product_id' => $val['Product']['id'])))?>">
@@ -41,7 +41,7 @@
 					</div>
 					<div class="desc-item-product">
 						<h1 style="height: 30px;">
-							<a target="_blank" href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>"><?php echo $val['Product']['name'] ?></a>
+							<a href="<?php echo $this->Html->url(array('controller' => 'products', 'action' => 'detail', '?' => array('product_id' => $val['Product']['id'])))?>"><?php echo $val['Product']['name'] ?></a>
 						</h1>
 						<div class="rate-product">
 							<div class="star star-on"></div>

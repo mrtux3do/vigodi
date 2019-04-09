@@ -2355,6 +2355,7 @@ li#compare:after{
 
 .form-cart table tbody td:first-child{
 	width: 25%;
+	padding: 10px;
 }
 
 .form-cart table tbody td{
