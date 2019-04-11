@@ -697,7 +697,7 @@
 						</div>
 						<div class="slide-new-product owl-carousel owl-theme owl-loaded">
 							<?php if(!empty($silk_product) && isset($silk_product)): ?>
-								<?php for($i = 0; $i<2; $i++): ?>
+								<?php for($i = 0; $i<ceil(count($silk_product)/5); $i++): ?>
 									<?php $obj = array_chunk($silk_product, 5);?>
 									<div class="content-new-product">
 										<!-- Loop item new product -->
@@ -742,7 +742,7 @@
 						</div>
 						<div class="slide-new-product owl-carousel owl-theme owl-loaded">
 							<?php if(!empty($bag_product) && isset($bag_product)): ?>
-								<?php for($i = 0; $i<2; $i++): ?>
+								<?php for($i = 0; $i<ceil(count($bag_product)/5); $i++): ?>
 									<?php $obj = array_chunk($bag_product, 5);?>
 									<div class="content-new-product">
 										<!-- Loop item new product -->
@@ -793,7 +793,7 @@
 						</div>
 						<div class="slide-new-product owl-carousel owl-theme owl-loaded">
 							<?php if(!empty($bear_product) && isset($bear_product)): ?>
-								<?php for($i = 0; $i<2; $i++): ?>
+								<?php for($i = 0; $i<ceil(count($bear_product)/5); $i++): ?>
 									<?php $obj = array_chunk($bear_product, 5);?>
 									<div class="content-new-product">
 										<!-- Loop item new product -->
@@ -838,7 +838,7 @@
 						</div>
 						<div class="slide-new-product owl-carousel owl-theme owl-loaded">
 							<?php if(!empty($balo_product) && isset($balo_product)): ?>
-								<?php for($i = 0; $i<2; $i++): ?>
+								<?php for($i = 0; $i<ceil(count($balo_product)/5); $i++): ?>
 									<?php $obj = array_chunk($balo_product, 5);?>
 									<div class="content-new-product">
 										<!-- Loop item new product -->
