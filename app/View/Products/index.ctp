@@ -794,7 +794,7 @@
 						<div class="slide-new-product owl-carousel owl-theme owl-loaded">
 							<?php if(!empty($bear_product) && isset($bear_product)): ?>
 								<?php for($i = 0; $i<2; $i++): ?>
-									<?php $obj = array_chunk($silk_product, 5);?>
+									<?php $obj = array_chunk($bear_product, 5);?>
 									<div class="content-new-product">
 										<!-- Loop item new product -->
 										<?php foreach($obj[$i] as $res): ?>
