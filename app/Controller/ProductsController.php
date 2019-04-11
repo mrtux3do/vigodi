@@ -15,7 +15,9 @@ class ProductsController extends CommonController {
 		$this->_user = $this->Auth->User();
 
 		//find number cart
-		if (!empty($this->_user)) {		
+		if (!empty($this->_user)) {	
+			$this->set('user', $this->_user);
+
 			$carts = $this->__getCart();
 			$this->_cartId = $carts['cart_id'];
 			$this->set('cart', $carts['cart_number']);    
@@ -26,7 +28,6 @@ class ProductsController extends CommonController {
 	public function index(){
 		$data = $this->Product->find('all');
 		$this->set('data', $data);
-
 		if (!empty($this->_user)) {
 			$this->set('user', $this->_user);
 		}

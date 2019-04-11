@@ -23,8 +23,8 @@ $(document).ready(function(){
 
     $('.add-to-cart').click(function(e) {
         //check login
-        var user = $.trim($("#myaccount .btn-popup").html());
-        if (user == 'Login') {
+        var user = $.trim($("#myaccount").val());
+        if (user != 1) {
             //login show popup
             $('.login-popup-cart').show();
             //Click close popup
