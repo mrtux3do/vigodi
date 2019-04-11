@@ -22,8 +22,9 @@
 	<title>
 		Vigodi
 	</title>
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->webroot; ?>img/logo.png">
 	<?php
-		echo $this->Html->meta('icon');
+		//echo $this->Html->meta('icon');
 		echo $this->fetch('meta');
 		
 		echo $this->Html->css('font-awesome');

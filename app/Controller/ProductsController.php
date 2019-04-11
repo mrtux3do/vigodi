@@ -28,9 +28,55 @@ class ProductsController extends CommonController {
 	public function index(){
 		$data = $this->Product->find('all');
 		$this->set('data', $data);
-		
-		$this->newProduct();
+		if (!empty($this->_user)) {
+			$this->set('user', $this->_user);
+		}
+		$this->__newProduct();
+		$this->__silkProduct();
+		$this->__bagProduct();
+		$this->__bearProduct();
+		$this->__baloProduct();
 	}
+
+	private function __silkProduct(){
+		$silk_product = $this->Product->find('all', array(
+			'conditions' => array('Product.category_id' => 6),
+			'order' => array('id' => 'DESC'),
+			'limit' => 10
+		));
+		$this->set('silk_product', $silk_product);
+		$this->render('index');	
+	}
+
+	private function __bagProduct(){
+		$bag_product = $this->Product->find('all', array(
+			'conditions' => array('Product.category_id' => 7),
+			'order' => array('id' => 'DESC'),
+			'limit' => 10
+		));
+		$this->set('bag_product', $bag_product);
+		$this->render('index');	
+	}
+
+	private function __bearProduct(){
+		$bear_product = $this->Product->find('all', array(
+			'conditions' => array('Product.category_id' => 8),
+			'order' => array('id' => 'DESC'),
+			'limit' => 10
+		));
+		$this->set('bear_product', $bear_product);
+		$this->render('index');	
+	}
+
+	private function __baloProduct(){
+		$balo_product = $this->Product->find('all', array(
+			'conditions' => array('Product.category_id' => 9),
+			'order' => array('id' => 'DESC'),
+			'limit' => 10
+		));
+		$this->set('balo_product', $balo_product);
+		$this->render('index');	
+	}			
 
 	//Product detail
 	public function detail(){
@@ -166,7 +212,7 @@ class ProductsController extends CommonController {
 		}
 	}
 
-	public function newProduct(){
+	private function __newProduct(){
 		$new_product = $this->Product->find('all', array(
 			'order' => array('id' => 'DESC'),
 			'limit' => 10
