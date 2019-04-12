@@ -445,7 +445,7 @@ li#compare:after{
 	margin-right: 70px;
 	font-size: 15px;
 	text-transform: uppercase;
-	line-height: 105px;
+	line-height: 100px;
 }
 
 #main-menu ul.drop-down #menu-active:hover{
@@ -496,7 +496,7 @@ li#compare:after{
 	padding: 0 35px;
 }
 
-.sub-menu-hln{
+.sub-menu-hln, .sub-menu-hbh{
 	width: 20%;
 }
 
@@ -1458,20 +1458,21 @@ li#compare:after{
 }
 
 .reg-form label.gender{
-	width: 40px;
+	width: 8%;
 	vertical-align: middle;
+	margin-right: 2%
 }
 
 .reg-form input[type="radio"]{
-	width: 150px;
+	width: 8%;
 	vertical-align: middle;
 }
 
 .form-group select{
-	width: 150px;
+	width: 15%;
 	height: 45px;
 	outline: none;
-	margin-right: 45px;
+	margin-right: 2%;
 }
 
 /*------------------------ Login Popup --------------------------*/
@@ -1629,12 +1630,12 @@ li#compare:after{
 }
 
 .email-info:before {
-    font-family: 'FontAwesome' !important;
-    content: '\f0e0';
-    position: absolute;
-    color: white;
-    font-size: 21px;
-    left: 14px;
+	font-family: 'FontAwesome' !important;
+	content: '\f0e0';
+	position: absolute;
+	color: white;
+	font-size: 21px;
+	left: 14px;
 }
 
 .phone:before{
@@ -1736,6 +1737,7 @@ li#compare:after{
 
 .title-new-product, .item-new-product{
 	overflow: hidden;
+	padding-bottom: 20px;
 }
 
 .content-new-product > .title-new-product{
@@ -1744,6 +1746,12 @@ li#compare:after{
 
 .item-new-product > .desc-item-product{
 	margin-top: 24px;
+}
+
+.item-new-product > .desc-item-product > h1{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .item-new-product > .desc-item-product h1 > a{
@@ -2578,7 +2586,7 @@ li#compare:after{
 	}
 
 	 #cart-wish{
-	 	display: none;
+		display: none;
 	 }
 
 	#sub-banner ul li:nth-child(2){
