@@ -177,6 +177,8 @@ class UsersController extends CommonController {
         if ($this->request->is(array('post', 'put'))) {
             $this->User->create();
             $data = $this->request->data;
+            $data['password'] = Security::hash($data['password'], 'md5', true);
+            $data['re-password'] =$data['password'];
             $data['created_at'] = date("Y-m-d H:i:s");
 
             if ($this->User->save($data)) {
