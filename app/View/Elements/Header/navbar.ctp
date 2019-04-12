@@ -2,7 +2,7 @@
     <div class="navbar-container ace-save-state" id="navbar-container">
 
         <div class="navbar-header pull-left">
-            <a href="index.html" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <small>
                     <div style="color: red; font-weight: bold;">Vi<span style="color: green">Go</span>Di <span style="color: white">Admin</span></div>
                 </small>
