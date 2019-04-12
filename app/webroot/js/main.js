@@ -141,7 +141,7 @@ jQuery(document).ready(function ($) {
                         //for browsers that have a thumbnail of selected image
                         var thumb = $('#avatar').next().find('img').data('thumb');
                         if(thumb) $('#avatar').get(0).src = thumb;
-                        $('#img-profile').val(thumb);
+                        $('#image').val(thumb);
                     }
 
                     deferred.resolve({'status':'OK'});

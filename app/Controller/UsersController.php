@@ -151,6 +151,7 @@ class UsersController extends CommonController {
             }
         }
 	}
+
 /*------------------admin----------------*/
 	public function index(){
         $this->layout = 'admin';
@@ -164,9 +165,8 @@ class UsersController extends CommonController {
         $this->set('commons', [
             'breadcrumbs' => [
                 ['User', ['controller' => 'users', 'action' => 'index']],
-                ['List']
             ],
-            'header' => ['User', 'member list'],
+            'header' => ['User', 'Danh sách'],
             'users' => $users
         ]);
     }
@@ -180,10 +180,10 @@ class UsersController extends CommonController {
             $data['created_at'] = date("Y-m-d H:i:s");
 
             if ($this->User->save($data)) {
-                $result['success'] = true;
+                $this->Session->setFlash('Tạo mới user thành công', 'success', array(), 'good');
                 return $this->redirect('index');
             } else {
-                $result['success'] = false;
+                $this->Session->setFlash('Không thể lưu được dữ liệu!', 'error', array(), 'bad');
                 return false;
             }
         }
@@ -191,9 +191,8 @@ class UsersController extends CommonController {
         $this->set('commons', [
             'breadcrumbs' => [
                 ['User', ['controller' => 'users', 'action' => 'add']],
-                ['List']
             ],
-            'header' => ['Khách hàng', 'Thêm mới']
+            'header' => ['User', 'Thêm mới']
         ]);
     }
 
@@ -207,9 +206,8 @@ class UsersController extends CommonController {
         $this->set('commons', [
             'breadcrumbs' => [
                 ['User', ['controller' => 'users', 'action' => 'profile']],
-                ['Profile']
             ],
-            'header' => ['Khách hàng', 'Thông tin cá nhân']
+            'header' => ['User', 'Thông tin cá nhân']
         ]);
     }
 
@@ -231,36 +229,36 @@ class UsersController extends CommonController {
             $this->User->id = $id;
             $data = $this->request->data;
             $data['hashed_email'] = $user['User']['hashed_email'];
-            $data['re-password'] = $user['User']['re-password'];
             $data['created_at'] = $user['User']['created_at'];
             $data['user_role_id'] = $user['User']['user_role_id'];
-            $data['updated_at'] = date('Y-m-d H:i:s', time());
-            $data['updated_uid'] = $this->Auth->user('id');
+            $data['update_date'] = date('Y-m-d H:i:s', time());
             $data['dob'] = $user['User']['dob'];
 
             //Check whether password is change or not
             if ($this->request->data('old_pass') != '') {
-                $passwordHasher = new BlowfishPasswordHasher();
-                $old_pass = $this->request->data('old_pass');
-                $new_pass = $passwordHasher->hash($this->request->data('new_pass'));
-                $chk_pass = $passwordHasher->check($old_pass, $user['User']['password']);
 
-                if ($chk_pass == true) {
-                    $data['password'] = $new_pass;
-                } else {
-                    $this->Flash->error('Wrong password!', array(
-                        'key' => 'error_msg'
-                    ));
-                    return $this->redirect($this->referer());
+                if ($this->request->data['new_pass'] != NULL) {
+                    $password = $this->request->data['new_pass'];
+                    $data['password'] = Security::hash($password, 'md5', true);
                 }
+
+                if ($this->request->data['confirm_pass'] != NULL) {
+                    $re_password = $this->request->data['confirm_pass'];
+                    $data['re-password'] = Security::hash($re_password, 'md5', true);
+                }
+
             } else {
                 $data['password'] = $user['User']['password'];
+                $data['re-password'] = $user['User']['re-password'];
             }
 
             //Save data into db
             if ($this->User->save($data)) {
-                $this->Session->setFlash('Something 111111111 bad.', 'success', array(), 'bad');
+                $this->Session->setFlash('Lưu chỉnh sửa thành công!', 'success', array(), 'good');
                 return $this->redirect('index');
+            } else {
+                $this->Session->setFlash('Không thể lưu được dữ liệu!', 'error', array(), 'bad');
+                return false;
             }
         }
         if (!$this->request->data) {
@@ -271,14 +269,12 @@ class UsersController extends CommonController {
         $this->set('commons', [
             'breadcrumbs' => [
                 ['User', ['controller' => 'users', 'action' => 'index']],
-                ['Edit']
             ],
-            'header' => ['Khách hàng', 'Chỉnh sửa thông tin khách hàng']
+            'header' => ['User', 'Chỉnh sửa thông tin khách hàng']
         ]);
     }
 
     public function delete() {
-        $this->layout = 'admin';
 
         $this->layout = false;
         $this->autoRender = false;
@@ -290,10 +286,11 @@ class UsersController extends CommonController {
             throw new NotFoundException(__('Invalid user'));
         }
 
-
         if ($this->User->delete($id)) {
+            $this->Session->setFlash('Xoá người dùng thành công!', 'success', array(), 'good');
             return $this->redirect('index');
         } else {
+            $this->Session->setFlash('Không thể xoá được dữ liệu!', 'error', array(), 'bad');
             return false;
         }
     }

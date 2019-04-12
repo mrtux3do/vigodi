@@ -6,7 +6,7 @@
                 <a href="<?php echo $this->Html->url([
                     'controller' => 'users',
                     'action' => 'index',
-                ]); ?>" title="TOP">TOP</a>
+                ]); ?>" title="TOP">Trang chủ</a>
             </li>
             <?php foreach ($commons['breadcrumbs'] as $value): ?>
                 <?php if (!empty($value[1])): ?>

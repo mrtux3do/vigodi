@@ -1,8 +1,7 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-12">
-        <?php echo $this->Session->flash('bad'); ?>
-        <form class="form-horizontal" action="/users/edit/1" method="POST"
+        <form class="form-horizontal" action="<?php echo '/users/edit/'.$user['User']['id'];?>" method="POST"
               enctype="multipart/form-data" id="editUserFrm">
             <div class="tabbable">
                 <ul class="nav nav-tabs padding-16">
@@ -45,14 +44,12 @@
 
                                     <div class="col-sm-8 gender-area">
                                         <label class="inline">
-                                            <input name="gender" type="radio" class="ace"
-                                                   value="Male" checked/>
+                                            <input name="gender" type="radio" class="ace" value="Male" <?php echo $user['User']['gender'] == 'Male' ? 'checked' : ''?>/>
                                             <span class="lbl middle"> Name</span>
                                         </label>
                                         &nbsp; &nbsp; &nbsp;
                                         <label class="inline">
-                                            <input name="gender" type="radio" class="ace"
-                                                   value="Female"/>
+                                            <input name="gender" type="radio" class="ace" value="Female" <?php echo $user['User']['gender'] == 'Female' ? 'checked' : ''?>/>
                                             <span class="lbl middle"> Nữ</span>
                                         </label>
                                     </div>
@@ -63,113 +60,95 @@
                                     <label class="col-sm-4 control-label no-padding-right"
                                            for="role">Role</label>
                                     <div class="col-sm-3">
-                                        <select name="role_id" id="role" class="form-control">
-                                            <option value=""> --- Select role ---</option>
-                                            <option value="Developer" selected> Developer </option>
-                                            <option value="Developer"> Admin </option>
-                                            <option value="Developer"> User </option>
+                                        <select class="form-control" name="user_role_id" id="user_role_id" data-placeholder="Choose a role...">
+                                            <option value="">Lựa chọn quyền...</option>
+                                            <option value="2" <?php echo $user['User']['user_role_id'] == '2' ? 'selected' : ''?>>Quản trị viên</option>
+                                            <option value="1" <?php echo $user['User']['user_role_id'] == '1' ? 'selected' : ''?>>Người dùng</option>
                                         </select>
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="col-xs-12 col-sm-4 upload-profile-area">
-                                <span class="profile-picture">
-                                    <img class="editable img-responsive" alt="User Profile"
-                                         src="/img/user-icon.png" id="img-profile"/>
-                                </span>
-                                <div class="space space-4"></div>
-                                <!-- Upload profile button -->
-                                <div class="upload-btn-wrapper">
-                                    <button class="btn btn-block btn-sm upload-file-btn">Update profile</button>
-                                    <input type="file" name="img-profile" accept="image/*"/>
-                                </div>
-                                <p class="error-file-msg"></p>
-                                <div id="upload_img_rule">
-                                    <p><i>Max file size: 10 MB</i></p>
-                                    <p><i>Only format: JPEG, PNG</i></p>
-                                </div>
                             </div>
                         </div>
 
                         <hr/>
                         <div class="row">
                             <div class="col-xs-12 col-sm-8">
-                                <div class="form-group">
-                                    <label class="col-sm-6 control-label">
-                                        <input type="checkbox" id="chk_change_pwd">
-                                        <span class="lbl"> Thay đổi mật khẩu</span>
-                                    </label>
+                                <div id="change_pass_panel">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label no-padding-right" for="old_pass">Mật khẩu cũ</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="password" id="old_pass" name="old_pass"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-4"></div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label no-padding-right" for="new_pass">Mật khẩu mới</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="password" id="new_pass" name="new_pass"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-4"></div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label no-padding-right" for="confirm_pass">Xác thực</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="password" id="confirm_pass" name="confirm_pass"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="change_pass_panel">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="old_pass">Mật khẩu cũ</label>
 
-                                <div class="col-sm-9">
-                                    <input type="password" id="old_pass" name="old_pass"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="new_pass">Mật khẩu mới</label>
-
-                                <div class="col-sm-9">
-                                    <input type="password" id="new_pass" name="new_pass"/>
-                                </div>
-                            </div>
-
-                            <div class="space-4"></div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="confirm_pass">Xác thực</label>
-
-                                <div class="col-sm-9">
-                                    <input type="password" id="confirm_pass" name="confirm_pass"/>
-                                </div>
-                            </div>
-                        </div>
                         <hr/>
                         <div class="space-4"></div>
                         <div class="space"></div>
                         <h4 class="header blue bolder smaller"><i class="fa fa-phone" aria-hidden="true"></i>
                             Liên hệ</h4>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="form-group" id="email_area">
+                                    <label class="col-sm-4 control-label no-padding-right" for="email">Email</label>
 
-                        <div class="form-group" id="email_area">
-                            <label class="col-sm-3 control-label no-padding-right" for="email">Email</label>
+                                    <div class="col-sm-8">
+                                        <span class="input-icon">
+                                            <input type="email" name="email"
+                                                   value="<?php echo $user['User']['email'];?>"/>
+                                            <i class="ace-icon fa fa-envelope"></i>
+                                        </span>
+                                    </div>
+                                </div>
 
-                            <div class="col-sm-9">
-                                <span class="input-icon">
-                                    <input type="email" name="email"
-                                           value="<?php echo $user['User']['email'];?>"/>
-                                    <i class="ace-icon fa fa-envelope"></i>
-                                </span>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="phone">Số điện thoại</label>
+
+                                    <div class="col-sm-8 phone-area">
+                                        <span class="input-icon">
+                                            <input class="input-medium input-mask-phone" type="text" id="phone"
+                                                   name="phone" value="<?php echo $user['User']['phone'];?>"/>
+                                            <i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="space-4"></div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="phone">Số điện thoại</label>
-
-                            <div class="col-sm-9 phone-area">
-                                <span class="input-icon">
-                                    <input class="input-medium input-mask-phone" type="text" id="phone"
-                                           name="phone" value="<?php echo $user['User']['phone'];?>"/>
-                                    <i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
-                                </span>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
+
             <div class="clearfix form-actions">
                 <div class="col-md-offset-3 col-md-9">
                     <button class="btn btn-info" type="submit" id="update_profile_btn">
                         <i class="ace-icon fa fa-check bigger-110"></i>
-                        Save
+                        Lưu
                     </button>
                     &nbsp; &nbsp;&nbsp; &nbsp;
                     <button class="btn" type="reset">
@@ -177,6 +156,7 @@
                         Reset
                     </button>
                 </div>
+
             </div>
         </form>
     </div>

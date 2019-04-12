@@ -28,7 +28,13 @@ class AuthController extends CommonController {
 				}
 				//delete session redirect -> when login again, redirect to the default of Auth->redirectUrl()
 				$this->Session->delete('Auth.redirect');
-                return $this->redirect($this->Auth->redirectUrl());
+
+				if ($this->Auth->user('user_role_id') == 2) {
+                    return $this->redirect('/admin/');
+                } else {
+                    return $this->redirect($this->Auth->redirectUrl());
+                }
+
 			}
 		}
 

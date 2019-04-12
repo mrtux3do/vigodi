@@ -1,0 +1,24 @@
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/fontawesome-webfont.eot?v=4.7.0');
+    src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'circular';
+    src: url('../fonts/circular-book.woff2');
+}
+
+@font-face {
+    font-family: 'circular-light';
+    src: url('../fonts/circular-light.woff2');
+}
+
+body, html, h2, a, p, h1, ul, li {
+    font-family: circular-light, sans-serif !important;
+    font-weight: 300;
+    font-size: 14px;
+}

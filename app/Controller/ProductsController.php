@@ -223,34 +223,113 @@ class ProductsController extends CommonController {
 		$this->render('index');
 	}
 
-    //admin action
-    //
+    /*------------------admin----------------*/
+
     public function listProductAdmin() {
         $this->layout = 'admin';
 
         $products = $this->Product->find('all');
 
         $this->set('products', $products);
+
+        $this->set('commons', [
+            'breadcrumbs' => [
+                ['Sản phẩm', ['controller' => 'products', 'action' => 'listProductAdmin']],
+            ],
+            'header' => ['Quản Lý Sản phẩm', 'Danh sách']
+        ]);
     }
 
     public function addProduct() {
         $this->layout = 'admin';
 
+        $this->__showProductForm();
+
     }
 
-    public function detailProduct() {
+    public function editProduct($id = null) {
         $this->layout = 'admin';
 
-        $id = $this->request->pass[0];
-        $product = $this->Product->findById($id);
+	    $this->__showProductForm($id);
 
-        $this->set("product", $product);
-        $this->set('commons', [
-            'breadcrumbs' => [
-                ['User', ['controller' => 'products', 'action' => 'detailProduct']],
-                ['Profile']
-            ],
-            'header' => ['Sản phẩm', 'Thông tin chi tiết']
-        ]);
+    }
+
+    private function __showProductForm($id = null) {
+        $catogories = $this->Category->find('all');
+        $fileName = 'img/no-photo.png';
+
+        if ($id) {
+            $product = $this->Product->findById($id);
+            $fileName = $product['Product']['image'];
+
+            $this->set('product', $product);
+            $this->set('commons', [
+                'breadcrumbs' => [
+                    ['Sản phẩm', ['controller' => 'products', 'action' => 'editProduct']],
+                ],
+                'header' => ['Quản Lý Sản phẩm', 'Chỉnh sửa']
+            ]);
+        } else {
+            $this->set('commons', [
+                'breadcrumbs' => [
+                    ['Sản phẩm', ['controller' => 'products', 'action' => 'addProduct']],
+                ],
+                'header' => ['Quản Lý Sản phẩm', 'Thêm sản phẩm']
+            ]);
+        }
+
+        if ($this->request->is(array('post', 'put'))) {
+            $data = $this->request->data;
+            if ($id) {
+                $this->Product->id = $id;
+            } else {
+                $this->Product->create();
+            }
+
+            //Update image
+            $fileInfo = $_FILES['image'];
+            if (!empty($fileInfo['name'])) {
+                $absolutePath = 'img/'. $fileInfo['name'];
+                $path = WWW_ROOT . $absolutePath;
+                move_uploaded_file($fileInfo['tmp_name'], $path);
+                $fileName = $absolutePath;
+            }
+
+            $data['image'] = $fileName;
+
+            $this->Product->set($data);
+
+            if ($this->Product->save()) {
+
+                $this->Session->setFlash('Lưu sản phẩm thành công!', 'success', array(), 'good');
+                return $this->redirect('/products/listProductAdmin');
+            } else {
+                $this->Session->setFlash('Không thể lưu dữ liệu', 'success', array(), 'bad');
+                return false;
+            }
+        }
+        $this->set('categories', $catogories);
+        $this->render('add_product');
+    }
+
+    public function deleteProduct() {
+
+        $this->layout = false;
+        $this->autoRender = false;
+
+        $id = $this->request->pass[0];
+
+        if (!$id) {
+            throw new NotFoundException(__('Invalid product'));
+        }
+
+
+        if ($this->Product->delete($id)) {
+            $this->Session->setFlash('Xoá sản phẩm thành công!', 'success', array(), 'bad', '30');
+            return $this->redirect('/products/listProductAdmin');
+        } else {
+            $this->Session->setFlash('Không thể xoá dữ liệu!', 'success', array(), 'bad');
+            return false;
+        }
     }
 }

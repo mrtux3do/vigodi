@@ -9,7 +9,6 @@ class AdminController extends CommonController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        // $this->Auth->allow('index', 'detail', 'listCart', 'deleteOrder', 'detailOrder', 'editOrder');
 
         $this->_user = $this->Auth->User();
     }
@@ -19,23 +18,16 @@ class AdminController extends CommonController {
         $this->set('commons', [
             'breadcrumbs' => [
                 ['Admin', ['controller' => 'admin', 'action' => 'index']],
-                ['List']
             ],
-            'header' => ['Admin', 'Home']
+            'header' => ['Admin', 'Trang chủ']
         ]);
     }
 
-    //
-    public function detail(){
-
-    }
-
     // order list
-    public function listCart() {
+    public function listOrder() {
         $this->set('commons', [
             'breadcrumbs' => [
-                ['Admin', ['controller' => 'admin', 'action' => 'list']],
-                ['List']
+                ['Đơn hàng', ['controller' => 'admin', 'action' => 'list']],
             ],
             'header' => ['Quản Lý Đơn Hàng', 'Danh Sách']
         ]);
@@ -49,72 +41,79 @@ class AdminController extends CommonController {
 
     //detail
     public function detailOrder() {
-        $this->autoRender = false;
+        $this->layout = 'admin';
 
-        $data = $this->request->data;
+        $id = $this->request->pass[0];
 
-        if ($this->request->is(array('post', 'put'))) {
-            if (isset($data)) {
-                return true;
-            } else {
-                return false;
-            }
+        $order = $this->Order->findById($id);
+        $cart = $this->CartProduct->find('all',array('conditions' => array('cart_id' => $order['Order']['cart_id'])));
 
-        } else {
-            $id = $this->request->pass[0];
+        $this->set('commons', [
+            'breadcrumbs' => [
+                ['Đơn Hàng', ['controller' => 'admin', 'action' => 'list']],
+            ],
+            'header' => ['Quản Lý Đơn Hàng', 'Chi tiết đơn hàng']
+        ]);
 
-            $order = $this->Order->findById($id);
-            $cart = $this->CartProduct->find('all',array('conditions' => array('cart_id' => $order['Order']['cart_id'])));
+        $this->set('order', $order);
+        $this->set('products', $cart);
+        $this->render('detail');
 
-            $this->set('commons', [
-                'breadcrumbs' => [
-                    ['Admin', ['controller' => 'admin', 'action' => 'list']],
-                    ['List']
-                ],
-                'header' => ['Quản Lý Đơn Hàng', 'Chi tiết đơn hàng']
-            ]);
-
-            $this->set('order', $order);
-            $this->set('products', $cart);
-            $this->render('detail');
-        }
 
     }
 
     //edit Order
     public function editOrder() {
-        $this->autoRender = false;
+        $this->layout = 'admin';
 
-        $data = $this->request->data;
+        $id = $this->request->pass[0];
+        $order = $this->Order->findById($id);
 
-        if (isset($data)) {
-            $res = $this->Order->findById($data['order_id']);
-            $this->Order->id = $data['order_id'];
-            $tmp = $res['Order'];
-            $tmp['status'] = $data['status'];
+        if ($this->request->is(array('post', 'put'))) {
+            $this->Order->id = $id;
+            $data = $this->request->data;
+            $data['cart_id'] = $order['Order']['cart_id'];
+            $data['user_id'] = $order['Order']['user_id'];
+            $data['updated_date'] = date('Y-m-d H:i:s', time());
 
-            if($this->Order->save($tmp)) {
-                return true;
+            $this->Order->set($data);
+
+            if ($this->Order->save()) {
+
+                $this->Session->setFlash('Lưu đơn hàng thành công!', 'success', array(), 'good');
+                return $this->redirect('/admin/listOrder');
             } else {
+                $this->Session->setFlash('Không thể lưu dữ liệu', 'success', array(), 'bad');
                 return false;
             }
 
         } else {
-            return false;
+            $cart = $this->CartProduct->find('all',array('conditions' => array('cart_id' => $order['Order']['cart_id'])));
+            $this->set('order', $order);
+            $this->set('products', $cart);
         }
+
+        $this->set('commons', [
+            'breadcrumbs' => [
+                ['Đơn Hàng', ['controller' => 'admin', 'action' => 'list']],
+            ],
+            'header' => ['Quản Lý Đơn Hàng', 'Chỉnh sửa đơn hàng']
+        ]);
+
+        $this->render('edit_order');
     }
 
     //delete Order
     public function deleteOrder() {
         $this->autoRender = false;
 
-        $data = $this->request->data;
+        $id = $this->request->pass[0];
 
         if (isset($data)) {
-            $order = $this->Order->findById($data['order_id']);
+            $order = $this->Order->findById($id);
             $products = $this->CartProduct->find('all', array('conditions' => array('cart_id'=> $order['Oder']['cart_id'])));
 
-            $this->Order->delete($data['order_id']);
+            $this->Order->delete($id);
             $this->Cart->delete($order['Oder']['cart_id']);
 
             foreach ($products as $val) {

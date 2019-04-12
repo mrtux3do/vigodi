@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/font-awesome/4.5.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
     <link rel="stylesheet" href="/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
     <!--[if lte IE 9]>
