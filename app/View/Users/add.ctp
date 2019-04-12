@@ -39,7 +39,7 @@
                 <div class="col-sm-8 gender-area">
                     <label class="inline">
                         <input name="gender" type="radio" class="ace" value="Male"/>
-                        <span class="lbl middle"> Name</span>
+                        <span class="lbl middle"> Nam</span>
                     </label>
                     &nbsp; &nbsp; &nbsp;
                     <label class="inline">
