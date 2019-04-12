@@ -98,8 +98,8 @@ switch ($order['Order']['status']) {
                             <th class="center">Mã sản phẩm</th>
                             <th class="center">Chi tiết</th>
                             <th>Giá</th>
-                            <th class="hidden-480">Số lượng</th>
                             <th>Giảm Giá</th>
+                            <th class="hidden-480">Số lượng</th>
                             <th class="right">Tạm tính</th>
 
                         </tr>
@@ -112,11 +112,11 @@ switch ($order['Order']['status']) {
                                 <td class="center"><?php echo $val['Product']['id'];?></td>
                                 <td><a href="<?php echo "/products/detail?product_id=".$val['Product']['id'];?>" target="_blank"><?php echo $val['Product']['name'];?></a></td>
                                 <td><?php echo $val['Product']['price'];?></td>
-                                <td><?php echo $val['CartProduct']['number'];?></td>
                                 <td><?php echo $val['Product']['sale_price'];?></td>
-                                <td><?php echo $val['CartProduct']['number']*$val['Product']['price'].' '.'VND'; ?></td>
+                                <td><?php echo $val['CartProduct']['number'];?></td>
+                                <td><?php echo $val['CartProduct']['number']*$val['Product']['price'] - $val['CartProduct']['number']*$val['Product']['sale_price'].' '.'VND'; ?></td>
                             </tr>
-                        <?php $sum += $val['CartProduct']['number']*$val['Product']['price'];?>
+                        <?php $sum += $val['CartProduct']['number']*$val['Product']['price'] - $val['CartProduct']['number']*$val['Product']['sale_price'];?>
                         <?php endforeach;?>
                             <tr>
                                 <td class="center"></td>
