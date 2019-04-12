@@ -40,7 +40,7 @@ $action = !empty($this->params['action']) ? $this->params['action'] : "";
 
     <ul class="nav nav-list">
       <li id="dashboard">
-            <a href="/">
+            <a href="/admin">
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text">Trang chủ</span>
             </a>
@@ -83,7 +83,7 @@ $action = !empty($this->params['action']) ? $this->params['action'] : "";
         <!-- Product -->
         <li class="<?php echo ($controller == "products") ? 'active open' : '';?>">
             <a href="javascript:void(0);" class="dropdown-toggle">
-                <i class="menu-icon fa fa-file-text"></i>
+                <i class="menu-icon fa fa-list-alt"></i>
                 <span class="menu-text">Quản Lý Sản Phẩm</span>
 
                 <b class="arrow fa fa-angle-down"></b>
@@ -124,8 +124,8 @@ $action = !empty($this->params['action']) ? $this->params['action'] : "";
             <b class="arrow"></b>
 
             <ul class="submenu">
-                <li class="<?php echo ($controller == "admin" && $action == 'listCart') ? 'active' : '';?>">
-                    <a href="<?php echo $this->Html->url(['controller' => 'admin', 'action' => 'listCart']); ?>">
+                <li class="<?php echo ($controller == "admin" && $action == 'listOrder') ? 'active' : '';?>">
+                    <a href="<?php echo $this->Html->url(['controller' => 'admin', 'action' => 'listOrder']); ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Danh sách
                     </a>

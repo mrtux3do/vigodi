@@ -32,7 +32,7 @@
                                     <div class="space space-4"></div>
 
                                     <a href="<?php echo $this->Html->url(['controller' => 'users', 'action' => 'delete', $user['User']['id']]); ?>"
-                                        class="btn btn-sm btn-block btn-danger">
+                                        class="btn btn-sm btn-block btn-danger" onclick="return confirm('Bạn có chắc chắn xoá người dùng này?');">
                                         <i class="ace-icon fa fa-pencil-square-o bigger-110"></i>
                                         <span class="bigger-110">Xoá tài khoản</span>
                                     </a>

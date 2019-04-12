@@ -1,3 +1,5 @@
+<?php echo $this->Session->flash('good'); ?>
+<?php echo $this->Session->flash('bad'); ?>
 <div class="row">
     <?php foreach($users as $user): ?>
     <div class="col-xs-6 col-sm-4 col-md-2">

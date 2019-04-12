@@ -5,7 +5,7 @@
             <small>Tất cả các trường có dấu (*) là bắt buộc</small>
         </div>
 
-        <form class="form-horizontal" id="validation-form" method="post" onSubmit="alert('Thank you!')">
+        <form class="form-horizontal" id="validation-form" method="post">
 
             <div class="space-20"></div>
 
@@ -28,6 +28,24 @@
                     <div class="clearfix">
                         <input type="text" id="name" name="name" class="col-xs-12 col-sm-4" />
                     </div>
+                </div>
+            </div>
+
+            <div class="space-2"></div>
+
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 no-padding-right">Giới tính</label>
+
+                <div class="col-sm-8 gender-area">
+                    <label class="inline">
+                        <input name="gender" type="radio" class="ace" value="Male"/>
+                        <span class="lbl middle"> Name</span>
+                    </label>
+                    &nbsp; &nbsp; &nbsp;
+                    <label class="inline">
+                        <input name="gender" type="radio" class="ace" value="Female"/>
+                        <span class="lbl middle"> Nữ</span>
+                    </label>
                 </div>
             </div>
 
@@ -68,17 +86,28 @@
                 </div>
             </div>
 
+            <div class="space-2"></div>
+
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="phone">Số điện thoại</label>
+
+                <div class="col-xs-12 col-sm-9">
+                    <div class="clearfix">
+                        <input type="text" name="phone" id="phone" class="col-xs-12 col-sm-4" />
+                    </div>
+                </div>
+            </div>
+
             <div class="space-10"></div>
             <div class="form-group">
                 <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="user_role_id">Quyền <span class="mark-star-fields">*</span></label>
 
                 <div class="col-xs-12 col-sm-9">
                     <div class="clearfix">
-                        <select class="col-xs-12 col-sm-4" name="user_role_id" id="user_role_id"
-                                data-placeholder="Choose a role...">
+                        <select class="col-xs-12 col-sm-4" name="user_role_id" id="user_role_id" data-placeholder="Choose a role...">
                             <option value="">Lựa chọn quyền...</option>
                             <option value="2">Quản trị viên</option>
-                            <option value="1">Khách hàng</option>
+                            <option value="1">Người dùng</option>
                         </select>
                     </div>
                 </div>
@@ -89,10 +118,9 @@
                 <div class="col-md-offset-3 col-md-9">
                     <button class="btn btn-info user-add-btn" data-last="Finish" type="submit">
                         <i class="ace-icon fa fa-check bigger-110"></i>
-                        Tạo mới
+                        Lưu
                     </button>
 
-                    &nbsp; &nbsp; &nbsp;
                     <button class="btn user-reset-btn" type="reset">
                         <i class="ace-icon fa fa-undo bigger-110"></i>
                         Reset
@@ -102,16 +130,3 @@
         </form>
     </div><!-- /.col -->
 </div><!-- /.row -->
-
-<div id="dialog-confirm" class="hide">
-    <div class="alert alert-info bigger-110">
-        These items will be permanently deleted and cannot be recovered.
-    </div>
-
-    <div class="space-6"></div>
-
-    <p class="bigger-110 bolder center grey">
-        <i class="ace-icon fa fa-hand-o-right blue bigger-120"></i>
-        Are you sure?
-    </p>
-</div><!-- #dialog-confirm -->
