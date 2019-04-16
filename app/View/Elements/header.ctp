@@ -56,8 +56,8 @@
 		<div class="row">
 		<div id="top-menu">
 			<!-- <div class="row"> -->
-				<div id="logo" class="col-lg-2">
-					<a href="/"><div style="color: red">Vi<span style="color: green">Go</span>Di</div></a>
+				<div id="logo" class="col-lg-2 col-sm-2 col-md-2 col-2">
+					<a href="/"><img style="width: 100%" src="<?php echo $this->webroot ?>img/IMG_2403.png"></a>
 				</div>
 
 				<div id="search" class="col-lg-7">
