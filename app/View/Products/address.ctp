@@ -27,7 +27,7 @@
 				<a href="/products/infoCart?cart_id=<?php echo $cart_id;?>"><button class="btn-product" type="button" <?php if (!isset($user['User']['address'])){ ?> disabled class="btn-disable" <?php } ?>>Giao hàng đến địa chỉ này</button></a>
 				<!-- <button class="btn-edit-addr" style="margin-left: 30px">Sửa</button> -->
 			</div>
-			<h2>Bạn muốn giao hàng đến địa chỉ khác? <a href="#" style="text-decoration: none; color: #eab90a">Thêm địa chỉ giao hàng mới</a></h2>
+			<h2>Bạn muốn giao hàng đến địa chỉ khác? <a href="#" style="text-decoration: none; color: #006838">Thêm địa chỉ giao hàng mới</a></h2>
 			<div class="form-add-addr">
 				<div class="reg-form">
 					<form method="POST", action="/products/address">
