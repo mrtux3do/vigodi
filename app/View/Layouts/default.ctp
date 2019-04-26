@@ -70,7 +70,7 @@
 	<div id="content">
 		<?php echo $this->fetch('content'); ?>
 	</div>
-
+	<button onclick="topFunction()" id="myBtn" title="Go to top">&#8593;</button>
 	<div id="footer">
         <?php echo $this->element('footer'); ?>
 	</div>
