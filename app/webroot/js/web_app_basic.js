@@ -108,7 +108,7 @@ $(document).ready(function(){
 		trendClasses();
 	});
 
-	$("#sort-category").on('click', function(){
+	$("#sort-category").hover(function(){
 		if($(".item-categories:first").is( ":hidden" )){
 			$(".item-categories").slideDown("slow");			
 		} else{
@@ -374,4 +374,22 @@ function imageZoom(imgID, resultID) {
 		y = y - window.pageYOffset;
 		return {x : x, y : y};
 	}
+}
+
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("myBtn").style.display = "block";
+  } else {
+    document.getElementById("myBtn").style.display = "none";
+  }
+}
+
+// // When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+	$('html,body').animate({
+		scrollTop: 0
+	}, 700);
 }
